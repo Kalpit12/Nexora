@@ -918,6 +918,7 @@ nav .container {
     animation: scroll-testimonials 40s linear infinite;
     will-change: transform;
     padding: 0;
+    align-items: flex-start;
 }
 
 .testimonials-scroll:hover {
@@ -928,6 +929,7 @@ nav .container {
     display: flex;
     gap: 1rem;
     flex-shrink: 0;
+    align-items: flex-start;
 }
 
 @keyframes scroll-testimonials {
@@ -954,9 +956,14 @@ nav .container {
     transition: all 0.3s ease;
     border: 1px solid rgba(99, 102, 241, 0.1);
     position: relative;
-    flex: 0 0 300px;
-    min-width: 300px;
-    height: auto;
+    flex: 0 0 280px;
+    min-width: 280px;
+    max-width: 280px;
+    width: 280px;
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
 .testimonial-card::before {
@@ -979,26 +986,35 @@ nav .container {
 .testimonial-rating {
     color: #fbbf24;
     margin-bottom: 0.5rem;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
+    flex-shrink: 0;
 }
 
 .testimonial-text {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     line-height: 1.4;
     color: var(--text-color);
     margin-bottom: 0.75rem;
     font-style: italic;
+    flex: 1;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    line-clamp: 5;
+    -webkit-box-orient: vertical;
 }
 
 .testimonial-author {
     display: flex;
     align-items: center;
     gap: 0.75rem;
+    flex-shrink: 0;
+    margin-top: auto;
 }
 
 .author-avatar {
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     background: var(--gradient-primary);
     color: var(--white);
@@ -1006,22 +1022,33 @@ nav .container {
     align-items: center;
     justify-content: center;
     font-weight: 700;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     flex-shrink: 0;
+}
+
+.author-info {
+    flex: 1;
+    min-width: 0;
 }
 
 .author-info h4 {
     color: var(--dark-color);
     font-weight: 600;
     margin-bottom: 0.1rem;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .author-info p {
     color: var(--text-light);
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 @media (max-width: 768px) {
@@ -1037,33 +1064,38 @@ nav .container {
     .testimonial-card {
         flex: 0 0 260px;
         min-width: 260px;
+        max-width: 260px;
+        width: 260px;
+        height: 260px;
         padding: 0.875rem 1rem;
     }
     
     .testimonial-rating {
         margin-bottom: 0.4rem;
-        font-size: 0.75rem;
+        font-size: 0.7rem;
     }
     
     .testimonial-text {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
         line-height: 1.35;
         margin-bottom: 0.6rem;
+        -webkit-line-clamp: 4;
+        line-clamp: 4;
     }
     
     .author-avatar {
-        width: 36px;
-        height: 36px;
-        font-size: 0.8rem;
+        width: 32px;
+        height: 32px;
+        font-size: 0.75rem;
     }
     
     .author-info h4 {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
         margin-bottom: 0.05rem;
     }
     
     .author-info p {
-        font-size: 0.65rem;
+        font-size: 0.6rem;
     }
     
     .testimonials-scroll-wrapper::before,
