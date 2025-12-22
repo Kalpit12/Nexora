@@ -284,21 +284,61 @@ if (contactForm) {
 // Newsletter Form Submission
 const newsletterForm = document.querySelector('.newsletter-form');
 if (newsletterForm) {
-    newsletterForm.addEventListener('submit', (e) => {
+    newsletterForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const email = newsletterForm.querySelector('input[type="email"]').value;
+        const emailInput = newsletterForm.querySelector('input[type="email"]');
+        const email = emailInput.value.trim();
         const button = newsletterForm.querySelector('button');
         const originalHTML = button.innerHTML;
         
-        button.innerHTML = '<i class="fas fa-check"></i>';
-        button.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+        // Validate email
+        if (!email) {
+            alert('Please enter your email address.');
+            return;
+        }
         
-        setTimeout(() => {
-            alert(`Thank you for subscribing with ${email}!`);
-            newsletterForm.reset();
-            button.innerHTML = originalHTML;
-            button.style.background = '';
-        }, 1500);
+        // Show loading state
+        button.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+        button.disabled = true;
+        
+        try {
+            const response = await fetch('/api/newsletter', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email })
+            });
+            
+            const data = await response.json();
+            
+            if (response.ok && data.success) {
+                button.innerHTML = '<i class="fas fa-check"></i>';
+                button.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+                newsletterForm.reset();
+                
+                // Show success message
+                setTimeout(() => {
+                    alert(data.message || 'Thank you for subscribing! Check your email for a welcome message.');
+                    button.innerHTML = originalHTML;
+                    button.style.background = '';
+                    button.disabled = false;
+                }, 2000);
+            } else {
+                throw new Error(data.error || 'Failed to subscribe');
+            }
+        } catch (error) {
+            console.error('Newsletter subscription error:', error);
+            button.innerHTML = '<i class="fas fa-times"></i>';
+            button.style.background = 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)';
+            
+            setTimeout(() => {
+                alert(error.message || 'Failed to subscribe. Please try again.');
+                button.innerHTML = originalHTML;
+                button.style.background = '';
+                button.disabled = false;
+            }, 2000);
+        }
     });
 }
 
@@ -427,28 +467,66 @@ document.addEventListener('DOMContentLoaded', () => {
     const consultationForm = document.getElementById('consultationForm');
     
     if (consultationForm) {
-        consultationForm.addEventListener('submit', (e) => {
+        consultationForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             
             const submitButton = consultationForm.querySelector('button[type="submit"]');
             const originalText = submitButton.textContent;
             
+            // Get form data
+            const formData = {
+                name: consultationForm.querySelector('input[type="text"]').value.trim(),
+                email: consultationForm.querySelector('input[type="email"]').value.trim(),
+                phone: consultationForm.querySelector('input[type="tel"]').value.trim(),
+                projectType: consultationForm.querySelector('select').value,
+                message: consultationForm.querySelector('textarea').value.trim()
+            };
+            
+            // Validate required fields
+            if (!formData.name || !formData.email || !formData.phone || !formData.projectType || !formData.message) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
             // Show loading state
             submitButton.textContent = 'Sending...';
             submitButton.disabled = true;
             
-            // Simulate form submission (replace with actual API call)
-            setTimeout(() => {
-                submitButton.textContent = '✓ Request Sent!';
-                submitButton.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
-                consultationForm.reset();
+            try {
+                const response = await fetch('/api/consultation', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok && data.success) {
+                    submitButton.textContent = '✓ Request Sent!';
+                    submitButton.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+                    consultationForm.reset();
+                    
+                    setTimeout(() => {
+                        submitButton.textContent = originalText;
+                        submitButton.style.background = '';
+                        submitButton.disabled = false;
+                    }, 3000);
+                } else {
+                    throw new Error(data.error || 'Failed to send request');
+                }
+            } catch (error) {
+                console.error('Consultation form error:', error);
+                submitButton.textContent = '✗ Error - Try Again';
+                submitButton.style.background = 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)';
                 
                 setTimeout(() => {
                     submitButton.textContent = originalText;
                     submitButton.style.background = '';
                     submitButton.disabled = false;
                 }, 3000);
-            }, 1500);
+            }
         });
     }
     

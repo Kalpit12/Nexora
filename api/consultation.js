@@ -17,13 +17,13 @@ module.exports = async (req, res) => {
       return res.status(405).json({ error: 'Method not allowed' });
     }
 
-    const { name, email, subject, message } = req.body;
+    const { name, email, phone, projectType, message } = req.body;
 
     // Validate required fields
-    if (!name || !email || !message) {
+    if (!name || !email || !phone || !projectType || !message) {
       return res.status(400).json({ 
         success: false, 
-        error: 'Name, email, and message are required' 
+        error: 'All fields are required' 
       });
     }
 
@@ -36,7 +36,16 @@ module.exports = async (req, res) => {
       });
     }
 
-    console.log(`📧 Contact form submission: ${name} (${email}) - ${subject || 'No subject'}`);
+    // Validate phone format (basic validation)
+    const phoneRegex = /^[\d\s\-\+\(\)]+$/;
+    if (!phoneRegex.test(phone)) {
+      return res.status(400).json({ 
+        success: false, 
+        error: 'Invalid phone number format' 
+      });
+    }
+
+    console.log(`📞 Consultation request: ${name} (${email}) - ${phone} - ${projectType}`);
 
     // Initialize Nodemailer for email sending
     let transporter = null;
@@ -55,10 +64,11 @@ module.exports = async (req, res) => {
     // Send email notification to admin
     if (transporter) {
       try {
+        // Email to admin
         const adminMailOptions = {
           from: `"NEXORA DIGITAL" <${process.env.EMAIL_USER}>`,
           to: process.env.ADMIN_EMAIL || process.env.EMAIL_USER,
-          subject: `New Contact Form Submission: ${subject || 'No Subject'}`,
+          subject: `New Consultation Request: ${projectType}`,
           html: `
             <!DOCTYPE html>
             <html>
@@ -77,7 +87,7 @@ module.exports = async (req, res) => {
             <body>
               <div class="container">
                 <div class="header">
-                  <h1>New Contact Form Submission</h1>
+                  <h1>New Consultation Request</h1>
                 </div>
                 <div class="content">
                   <div class="field">
@@ -88,12 +98,14 @@ module.exports = async (req, res) => {
                     <div class="field-label">Email:</div>
                     <div class="field-value"><a href="mailto:${email}">${email}</a></div>
                   </div>
-                  ${subject ? `
                   <div class="field">
-                    <div class="field-label">Subject:</div>
-                    <div class="field-value">${subject}</div>
+                    <div class="field-label">Phone:</div>
+                    <div class="field-value"><a href="tel:${phone}">${phone}</a></div>
                   </div>
-                  ` : ''}
+                  <div class="field">
+                    <div class="field-label">Project Type:</div>
+                    <div class="field-value">${projectType}</div>
+                  </div>
                   <div class="field">
                     <div class="field-label">Message:</div>
                     <div class="message-box">${message.replace(/\n/g, '<br>')}</div>
@@ -110,13 +122,13 @@ module.exports = async (req, res) => {
         };
 
         await transporter.sendMail(adminMailOptions);
-        console.log(`✅ Contact form notification sent for ${email}`);
+        console.log(`✅ Admin notification sent for consultation request from ${email}`);
 
-        // Optional: Send confirmation email to user
+        // Confirmation email to user
         const userMailOptions = {
           from: `"NEXORA DIGITAL" <${process.env.EMAIL_USER}>`,
           to: email,
-          subject: 'Thank You for Contacting NEXORA DIGITAL',
+          subject: 'Thank You for Your Consultation Request - NEXORA DIGITAL',
           html: `
             <!DOCTYPE html>
             <html>
@@ -126,6 +138,7 @@ module.exports = async (req, res) => {
                 .container { max-width: 600px; margin: 0 auto; padding: 20px; }
                 .header { background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); color: white; padding: 30px; text-align: center; border-radius: 10px 10px 0 0; }
                 .content { background: #f8f9fa; padding: 30px; border-radius: 0 0 10px 10px; }
+                .button { display: inline-block; padding: 12px 30px; background: #6366f1; color: white; text-decoration: none; border-radius: 5px; margin: 20px 0; }
                 .footer { text-align: center; margin-top: 20px; color: #666; font-size: 12px; }
               </style>
             </head>
@@ -135,16 +148,25 @@ module.exports = async (req, res) => {
                   <h1>Thank You, ${name}!</h1>
                 </div>
                 <div class="content">
-                  <p>We've received your message and will get back to you as soon as possible, typically within 24 hours.</p>
-                  <p>If your inquiry is urgent, please feel free to call us:</p>
+                  <p>We've received your consultation request for <strong>${projectType}</strong> and we're excited to help you transform your digital presence!</p>
+                  <p>Our team will review your request and get back to you within <strong>24 hours</strong> to schedule your free 30-minute consultation.</p>
+                  <p>In the meantime, feel free to:</p>
+                  <ul>
+                    <li>Visit our website: <a href="https://nexora-gilt.vercel.app/">nexora-gilt.vercel.app</a></li>
+                    <li>Check out our portfolio and case studies</li>
+                    <li>Use our cost calculator to get an instant estimate</li>
+                  </ul>
+                  <p>If you have any urgent questions, you can reach us at:</p>
                   <p>
-                    📞 Phone: +254 112440306, +254 789098686<br>
-                    📧 Email: info@nexoradigital.com
+                    📧 Email: info@nexoradigital.com<br>
+                    📞 Phone: +254 112440306, +254 789098686
                   </p>
+                  <p>We look forward to working with you!</p>
                   <p>Best regards,<br><strong>The NEXORA DIGITAL Team</strong></p>
                 </div>
                 <div class="footer">
                   <p>NEXORA DIGITAL | <a href="https://nexora-gilt.vercel.app/">nexora-gilt.vercel.app</a></p>
+                  <p>You received this email because you requested a free consultation.</p>
                 </div>
               </div>
             </body>
@@ -156,18 +178,24 @@ module.exports = async (req, res) => {
         console.log(`✅ Confirmation email sent to ${email}`);
 
       } catch (emailError) {
-        console.error('Error sending contact form emails:', emailError);
+        console.error('Error sending consultation emails:', emailError);
+        // Still return success if email fails, but log the error
       }
     } else {
-      console.log('⚠️  Email not configured. Contact form logged but not sent.');
+      console.log('⚠️  Email not configured. Consultation request logged but not sent.');
     }
 
-    res.json({ success: true, message: 'Thank you for your message! We will get back to you soon.' });
+    // Return success response
+    res.json({ 
+      success: true, 
+      message: 'Thank you for your consultation request! We will contact you within 24 hours.' 
+    });
+
   } catch (error) {
-    console.error('Contact API error:', error);
+    console.error('Consultation API error:', error);
     res.status(500).json({ 
       success: false,
-      error: 'An error occurred. Please try again later.' 
+      error: 'An error occurred while processing your request. Please try again later.' 
     });
   }
 };

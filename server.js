@@ -70,10 +70,148 @@ app.get('/api/projects', (req, res) => {
 });
 
 // Contact form endpoint
-app.post('/api/contact', (req, res) => {
-  // In a real app, you would save this to a database and/or send an email
-  console.log('Contact form submission:', req.body);
-  res.json({ success: true, message: 'Thank you for your message! We will get back to you soon.' });
+app.post('/api/contact', async (req, res) => {
+  try {
+    const { name, email, subject, message } = req.body;
+
+    // Validate required fields
+    if (!name || !email || !message) {
+      return res.status(400).json({ 
+        success: false, 
+        error: 'Name, email, and message are required' 
+      });
+    }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ 
+        success: false, 
+        error: 'Invalid email format' 
+      });
+    }
+
+    console.log(`📧 Contact form submission: ${name} (${email}) - ${subject || 'No subject'}`);
+
+    // Send email notification to admin
+    if (transporter) {
+      try {
+        const adminMailOptions = {
+          from: `"NEXORA DIGITAL" <${process.env.EMAIL_USER}>`,
+          to: process.env.ADMIN_EMAIL || process.env.EMAIL_USER,
+          subject: `New Contact Form Submission: ${subject || 'No Subject'}`,
+          html: `
+            <!DOCTYPE html>
+            <html>
+            <head>
+              <style>
+                body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+                .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+                .header { background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); color: white; padding: 30px; text-align: center; border-radius: 10px 10px 0 0; }
+                .content { background: #f8f9fa; padding: 30px; border-radius: 0 0 10px 10px; }
+                .field { margin-bottom: 15px; }
+                .field-label { font-weight: 600; color: #6366f1; }
+                .field-value { margin-top: 5px; color: #333; }
+                .message-box { background: white; padding: 15px; border-left: 4px solid #6366f1; margin-top: 10px; }
+              </style>
+            </head>
+            <body>
+              <div class="container">
+                <div class="header">
+                  <h1>New Contact Form Submission</h1>
+                </div>
+                <div class="content">
+                  <div class="field">
+                    <div class="field-label">Name:</div>
+                    <div class="field-value">${name}</div>
+                  </div>
+                  <div class="field">
+                    <div class="field-label">Email:</div>
+                    <div class="field-value"><a href="mailto:${email}">${email}</a></div>
+                  </div>
+                  ${subject ? `
+                  <div class="field">
+                    <div class="field-label">Subject:</div>
+                    <div class="field-value">${subject}</div>
+                  </div>
+                  ` : ''}
+                  <div class="field">
+                    <div class="field-label">Message:</div>
+                    <div class="message-box">${message.replace(/\n/g, '<br>')}</div>
+                  </div>
+                  <div class="field">
+                    <div class="field-label">Date:</div>
+                    <div class="field-value">${new Date().toLocaleString()}</div>
+                  </div>
+                </div>
+              </div>
+            </body>
+            </html>
+          `
+        };
+
+        await transporter.sendMail(adminMailOptions);
+        console.log(`✅ Contact form notification sent for ${email}`);
+
+        // Optional: Send confirmation email to user
+        const userMailOptions = {
+          from: `"NEXORA DIGITAL" <${process.env.EMAIL_USER}>`,
+          to: email,
+          subject: 'Thank You for Contacting NEXORA DIGITAL',
+          html: `
+            <!DOCTYPE html>
+            <html>
+            <head>
+              <style>
+                body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+                .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+                .header { background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); color: white; padding: 30px; text-align: center; border-radius: 10px 10px 0 0; }
+                .content { background: #f8f9fa; padding: 30px; border-radius: 0 0 10px 10px; }
+                .footer { text-align: center; margin-top: 20px; color: #666; font-size: 12px; }
+              </style>
+            </head>
+            <body>
+              <div class="container">
+                <div class="header">
+                  <h1>Thank You, ${name}!</h1>
+                </div>
+                <div class="content">
+                  <p>We've received your message and will get back to you as soon as possible, typically within 24 hours.</p>
+                  <p>If your inquiry is urgent, please feel free to call us:</p>
+                  <p>
+                    📞 Phone: +254 112440306, +254 789098686<br>
+                    📧 Email: info@nexoradigital.com
+                  </p>
+                  <p>Best regards,<br><strong>The NEXORA DIGITAL Team</strong></p>
+                </div>
+                <div class="footer">
+                  <p>NEXORA DIGITAL | <a href="https://nexora-gilt.vercel.app/">nexora-gilt.vercel.app</a></p>
+                </div>
+              </div>
+            </body>
+            </html>
+          `
+        };
+
+        await transporter.sendMail(userMailOptions);
+        console.log(`✅ Confirmation email sent to ${email}`);
+
+      } catch (emailError) {
+        console.error('Error sending contact form emails:', emailError);
+        // Still return success if email fails
+      }
+    } else {
+      console.log('⚠️  Email not configured. Contact form logged but not sent.');
+    }
+
+    res.json({ success: true, message: 'Thank you for your message! We will get back to you soon.' });
+  } catch (error) {
+    console.error('Contact form error:', error);
+    res.status(500).json({ 
+      success: false, 
+      error: 'An error occurred. Please try again later.' 
+    });
+  }
 });
 
 // Lead Magnet endpoint - Capture email and send PDF
@@ -332,6 +470,270 @@ app.post('/api/chat', async (req, res) => {
     
     res.status(500).json({ 
       error: errorMessage
+    });
+  }
+});
+
+// Consultation form endpoint
+app.post('/api/consultation', async (req, res) => {
+  try {
+    const { name, email, phone, projectType, message } = req.body;
+
+    // Validate required fields
+    if (!name || !email || !phone || !projectType || !message) {
+      return res.status(400).json({ 
+        success: false, 
+        error: 'All fields are required' 
+      });
+    }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ 
+        success: false, 
+        error: 'Invalid email format' 
+      });
+    }
+
+    console.log(`📞 Consultation request: ${name} (${email}) - ${phone} - ${projectType}`);
+
+    // Send email notification to admin
+    if (transporter) {
+      try {
+        const adminMailOptions = {
+          from: `"NEXORA DIGITAL" <${process.env.EMAIL_USER}>`,
+          to: process.env.ADMIN_EMAIL || process.env.EMAIL_USER,
+          subject: `New Consultation Request: ${projectType}`,
+          html: `
+            <!DOCTYPE html>
+            <html>
+            <head>
+              <style>
+                body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+                .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+                .header { background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); color: white; padding: 30px; text-align: center; border-radius: 10px 10px 0 0; }
+                .content { background: #f8f9fa; padding: 30px; border-radius: 0 0 10px 10px; }
+                .field { margin-bottom: 15px; }
+                .field-label { font-weight: 600; color: #6366f1; }
+                .field-value { margin-top: 5px; color: #333; }
+                .message-box { background: white; padding: 15px; border-left: 4px solid #6366f1; margin-top: 10px; }
+              </style>
+            </head>
+            <body>
+              <div class="container">
+                <div class="header">
+                  <h1>New Consultation Request</h1>
+                </div>
+                <div class="content">
+                  <div class="field">
+                    <div class="field-label">Name:</div>
+                    <div class="field-value">${name}</div>
+                  </div>
+                  <div class="field">
+                    <div class="field-label">Email:</div>
+                    <div class="field-value"><a href="mailto:${email}">${email}</a></div>
+                  </div>
+                  <div class="field">
+                    <div class="field-label">Phone:</div>
+                    <div class="field-value"><a href="tel:${phone}">${phone}</a></div>
+                  </div>
+                  <div class="field">
+                    <div class="field-label">Project Type:</div>
+                    <div class="field-value">${projectType}</div>
+                  </div>
+                  <div class="field">
+                    <div class="field-label">Message:</div>
+                    <div class="message-box">${message.replace(/\n/g, '<br>')}</div>
+                  </div>
+                  <div class="field">
+                    <div class="field-label">Date:</div>
+                    <div class="field-value">${new Date().toLocaleString()}</div>
+                  </div>
+                </div>
+              </div>
+            </body>
+            </html>
+          `
+        };
+
+        await transporter.sendMail(adminMailOptions);
+        console.log(`✅ Admin notification sent for consultation request from ${email}`);
+
+        // Confirmation email to user
+        const userMailOptions = {
+          from: `"NEXORA DIGITAL" <${process.env.EMAIL_USER}>`,
+          to: email,
+          subject: 'Thank You for Your Consultation Request - NEXORA DIGITAL',
+          html: `
+            <!DOCTYPE html>
+            <html>
+            <head>
+              <style>
+                body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+                .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+                .header { background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); color: white; padding: 30px; text-align: center; border-radius: 10px 10px 0 0; }
+                .content { background: #f8f9fa; padding: 30px; border-radius: 0 0 10px 10px; }
+                .footer { text-align: center; margin-top: 20px; color: #666; font-size: 12px; }
+              </style>
+            </head>
+            <body>
+              <div class="container">
+                <div class="header">
+                  <h1>Thank You, ${name}!</h1>
+                </div>
+                <div class="content">
+                  <p>We've received your consultation request for <strong>${projectType}</strong> and we're excited to help you transform your digital presence!</p>
+                  <p>Our team will review your request and get back to you within <strong>24 hours</strong> to schedule your free 30-minute consultation.</p>
+                  <p>If you have any urgent questions, you can reach us at:</p>
+                  <p>
+                    📧 Email: info@nexoradigital.com<br>
+                    📞 Phone: +254 112440306, +254 789098686
+                  </p>
+                  <p>Best regards,<br><strong>The NEXORA DIGITAL Team</strong></p>
+                </div>
+                <div class="footer">
+                  <p>NEXORA DIGITAL | <a href="https://nexora-gilt.vercel.app/">nexora-gilt.vercel.app</a></p>
+                </div>
+              </div>
+            </body>
+            </html>
+          `
+        };
+
+        await transporter.sendMail(userMailOptions);
+        console.log(`✅ Confirmation email sent to ${email}`);
+
+      } catch (emailError) {
+        console.error('Error sending consultation emails:', emailError);
+      }
+    } else {
+      console.log('⚠️  Email not configured. Consultation request logged but not sent.');
+    }
+
+    res.json({ 
+      success: true, 
+      message: 'Thank you for your consultation request! We will contact you within 24 hours.' 
+    });
+
+  } catch (error) {
+    console.error('Consultation API error:', error);
+    res.status(500).json({ 
+      success: false,
+      error: 'An error occurred while processing your request. Please try again later.' 
+    });
+  }
+});
+
+// Newsletter subscription endpoint
+app.post('/api/newsletter', async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    // Validate email
+    if (!email) {
+      return res.status(400).json({ 
+        success: false, 
+        error: 'Email is required' 
+      });
+    }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ 
+        success: false, 
+        error: 'Invalid email format' 
+      });
+    }
+
+    console.log(`📧 Newsletter subscription: ${email}`);
+
+    // Send welcome email to subscriber
+    if (transporter) {
+      try {
+        const welcomeMailOptions = {
+          from: `"NEXORA DIGITAL" <${process.env.EMAIL_USER}>`,
+          to: email,
+          subject: 'Welcome to NEXORA DIGITAL Newsletter! 🎉',
+          html: `
+            <!DOCTYPE html>
+            <html>
+            <head>
+              <style>
+                body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+                .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+                .header { background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); color: white; padding: 30px; text-align: center; border-radius: 10px 10px 0 0; }
+                .content { background: #f8f9fa; padding: 30px; border-radius: 0 0 10px 10px; }
+                .benefits { background: white; padding: 20px; border-radius: 8px; margin: 20px 0; }
+                .benefits ul { margin: 10px 0; padding-left: 20px; }
+                .benefits li { margin-bottom: 8px; }
+                .footer { text-align: center; margin-top: 20px; color: #666; font-size: 12px; }
+              </style>
+            </head>
+            <body>
+              <div class="container">
+                <div class="header">
+                  <h1>Welcome to Our Newsletter! 🎉</h1>
+                </div>
+                <div class="content">
+                  <p>Thank you for subscribing to the <strong>NEXORA DIGITAL</strong> newsletter!</p>
+                  <div class="benefits">
+                    <h3 style="color: #6366f1; margin-top: 0;">What you'll receive:</h3>
+                    <ul>
+                      <li>📊 Latest web development trends and technologies</li>
+                      <li>💡 Digital marketing tips and strategies</li>
+                      <li>🚀 Website optimization techniques</li>
+                      <li>📈 Case studies and success stories</li>
+                      <li>🎁 Exclusive offers and early access to new services</li>
+                    </ul>
+                  </div>
+                  <p>Best regards,<br><strong>The NEXORA DIGITAL Team</strong></p>
+                </div>
+                <div class="footer">
+                  <p>NEXORA DIGITAL | <a href="https://nexora-gilt.vercel.app/">nexora-gilt.vercel.app</a></p>
+                </div>
+              </div>
+            </body>
+            </html>
+          `
+        };
+
+        await transporter.sendMail(welcomeMailOptions);
+        console.log(`✅ Welcome email sent to ${email}`);
+
+        // Optional: Send notification to admin
+        if (process.env.ADMIN_EMAIL) {
+          const adminMailOptions = {
+            from: `"NEXORA DIGITAL" <${process.env.EMAIL_USER}>`,
+            to: process.env.ADMIN_EMAIL,
+            subject: 'New Newsletter Subscription',
+            html: `
+              <h2>New Newsletter Subscriber</h2>
+              <p><strong>Email:</strong> ${email}</p>
+              <p><strong>Date:</strong> ${new Date().toLocaleString()}</p>
+            `
+          };
+          await transporter.sendMail(adminMailOptions);
+        }
+
+      } catch (emailError) {
+        console.error('Error sending newsletter emails:', emailError);
+      }
+    } else {
+      console.log('⚠️  Email not configured. Newsletter subscription logged but welcome email not sent.');
+    }
+
+    res.json({ 
+      success: true, 
+      message: 'Successfully subscribed to our newsletter! Check your email for a welcome message.' 
+    });
+
+  } catch (error) {
+    console.error('Newsletter API error:', error);
+    res.status(500).json({ 
+      success: false,
+      error: 'An error occurred while processing your subscription. Please try again later.' 
     });
   }
 });
