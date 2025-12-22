@@ -565,4 +565,76 @@ document.addEventListener('DOMContentLoaded', () => {
             this.style.transform = 'translateY(0)';
         });
     });
+    
+    // Cost Calculator Functionality
+    const costCalculatorForm = document.getElementById('costCalculatorForm');
+    if (costCalculatorForm) {
+        costCalculatorForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const projectType = document.getElementById('projectType').value;
+            const pageCount = parseInt(document.getElementById('pageCount').value) || 5;
+            const designComplexity = document.getElementById('designComplexity').value;
+            const hasSeo = document.getElementById('featureSeo').checked;
+            const hasCms = document.getElementById('featureCms').checked;
+            const hasPayment = document.getElementById('featurePayment').checked;
+            const hasAnalytics = document.getElementById('featureAnalytics').checked;
+            
+            // Base prices (in KES)
+            const basePrices = {
+                website: 50000,
+                webapp: 120000,
+                ecommerce: 150000,
+                redesign: 80000,
+                custom: 200000
+            };
+            
+            // Complexity multipliers
+            const complexityMultipliers = {
+                simple: 0.8,
+                moderate: 1.0,
+                complex: 1.5
+            };
+            
+            // Feature prices
+            const featurePrices = {
+                seo: 15000,
+                cms: 20000,
+                payment: 25000,
+                analytics: 5000
+            };
+            
+            // Calculate base cost
+            let baseCost = basePrices[projectType] || 100000;
+            
+            // Apply page/feature multiplier (for webapp and custom)
+            if (projectType === 'webapp' || projectType === 'custom') {
+                baseCost += (pageCount - 5) * 10000;
+            } else {
+                baseCost += (pageCount - 5) * 3000;
+            }
+            
+            // Apply complexity multiplier
+            baseCost *= complexityMultipliers[designComplexity] || 1.0;
+            
+            // Add feature costs
+            if (hasSeo) baseCost += featurePrices.seo;
+            if (hasCms) baseCost += featurePrices.cms;
+            if (hasPayment) baseCost += featurePrices.payment;
+            if (hasAnalytics) baseCost += featurePrices.analytics;
+            
+            // Round to nearest 1000
+            const estimatedCost = Math.round(baseCost / 1000) * 1000;
+            
+            // Display result
+            const resultDiv = document.getElementById('calculatorResult');
+            const amountSpan = document.getElementById('estimatedAmount');
+            
+            amountSpan.textContent = estimatedCost.toLocaleString('en-KE');
+            resultDiv.style.display = 'block';
+            
+            // Smooth scroll to result
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        });
+    }
 });

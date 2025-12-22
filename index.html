@@ -57,15 +57,15 @@
                 </div>
                 <div class="hero-stats">
                     <div class="stat-item">
-                        <div class="stat-number" data-target="8">0</div>
+                        <div class="stat-number" data-target="2">0</div>
                         <div class="stat-label">Projects Completed</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-number" data-target="5">0</div>
+                        <div class="stat-number" data-target="2">0</div>
                         <div class="stat-label">Happy Clients</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-number" data-target="2">0</div>
+                        <div class="stat-number" data-target="0">0</div>
                         <div class="stat-label">Years Experience</div>
                     </div>
                 </div>
@@ -267,13 +267,13 @@
             <div class="stats-grid">
                 <div class="stat-card">
                     <div class="stat-icon"><i class="fas fa-trophy"></i></div>
-                    <div class="stat-value" data-target="8">0</div>
-                    <div class="stat-text">Projects Delivered</div>
+                    <div class="stat-value" data-target="2">0</div>
+                    <div class="stat-text">Projects Completed</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-icon"><i class="fas fa-users"></i></div>
-                    <div class="stat-value" data-target="5">0</div>
-                    <div class="stat-text">Satisfied Clients</div>
+                    <div class="stat-value" data-target="2">0</div>
+                    <div class="stat-text">Happy Clients</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-icon"><i class="fas fa-code"></i></div>
@@ -282,7 +282,7 @@
                 </div>
                 <div class="stat-card">
                     <div class="stat-icon"><i class="fas fa-globe"></i></div>
-                    <div class="stat-value" data-target="2">0</div>
+                    <div class="stat-value" data-target="0">0</div>
                     <div class="stat-text">Countries Served</div>
                 </div>
             </div>
@@ -434,6 +434,159 @@
                             <h3>Growth</h3>
                             <p>Solutions designed to scale with your business</p>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Badges Section -->
+    <section class="trust-badges">
+        <div class="container">
+            <div class="trust-content">
+                <div class="trust-text">
+                    <span class="section-subtitle">Why Choose Us</span>
+                    <h2 class="section-title">Your Success is Our Guarantee</h2>
+                    <p>We stand behind our work with industry-leading guarantees and commitments</p>
+                </div>
+                <div class="badges-grid">
+                    <div class="badge-card">
+                        <div class="badge-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>100% Satisfaction Guarantee</h3>
+                        <p>Not happy? We'll make it right or provide a full refund. Your success is our priority.</p>
+                    </div>
+                    <div class="badge-card">
+                        <div class="badge-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3>On-Time Delivery</h3>
+                        <p>We meet deadlines, every single time. Late delivery? You get a discount on your next project.</p>
+                    </div>
+                    <div class="badge-card">
+                        <div class="badge-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h3>24/7 Support</h3>
+                        <p>Round-the-clock support for all our clients. We're here when you need us, always.</p>
+                    </div>
+                    <div class="badge-card">
+                        <div class="badge-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <h3>Secure & Protected</h3>
+                        <p>Your data and projects are protected with enterprise-grade security measures.</p>
+                    </div>
+                    <div class="badge-card">
+                        <div class="badge-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <h3>Certified Professionals</h3>
+                        <p>Our team holds certifications in the latest technologies and best practices.</p>
+                    </div>
+                    <div class="badge-card">
+                        <div class="badge-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3>Transparent Pricing</h3>
+                        <p>No hidden fees, no surprises. Clear pricing with detailed breakdowns for every project.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Cost Calculator Section -->
+    <section class="cost-calculator">
+        <div class="container">
+            <div class="calculator-content">
+                <div class="calculator-text">
+                    <span class="section-subtitle">Free Estimate</span>
+                    <h2 class="section-title">Get an Instant Project Estimate</h2>
+                    <p>Answer a few quick questions and get an estimated cost for your project. No commitment required.</p>
+                    <div class="calculator-benefits">
+                        <div class="calc-benefit">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Instant estimate in 2 minutes</span>
+                        </div>
+                        <div class="calc-benefit">
+                            <i class="fas fa-check-circle"></i>
+                            <span>No credit card required</span>
+                        </div>
+                        <div class="calc-benefit">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Get detailed quote via email</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="calculator-form-wrapper">
+                    <div class="calculator-card">
+                        <h3>Project Cost Calculator</h3>
+                        <form class="calculator-form" id="costCalculatorForm">
+                            <div class="form-group">
+                                <label>Project Type</label>
+                                <select id="projectType" required>
+                                    <option value="">Select project type</option>
+                                    <option value="website">Website (5-10 pages)</option>
+                                    <option value="webapp">Web Application</option>
+                                    <option value="ecommerce">E-commerce Store</option>
+                                    <option value="redesign">Website Redesign</option>
+                                    <option value="custom">Custom Solution</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Number of Pages/Features</label>
+                                <input type="number" id="pageCount" min="1" max="50" value="5" required>
+                                <span class="form-hint">Approximate number of pages or main features</span>
+                            </div>
+                            <div class="form-group">
+                                <label>Design Complexity</label>
+                                <select id="designComplexity" required>
+                                    <option value="simple">Simple (Template-based)</option>
+                                    <option value="moderate" selected>Moderate (Custom Design)</option>
+                                    <option value="complex">Complex (Fully Custom)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Additional Features</label>
+                                <div class="checkbox-group">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" value="seo" id="featureSeo">
+                                        <span>SEO Optimization</span>
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" value="cms" id="featureCms">
+                                        <span>Content Management System</span>
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" value="payment" id="featurePayment">
+                                        <span>Payment Integration</span>
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" value="analytics" id="featureAnalytics">
+                                        <span>Analytics Setup</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="calculator-result" id="calculatorResult" style="display: none;">
+                                <div class="result-header">
+                                    <i class="fas fa-calculator"></i>
+                                    <h4>Estimated Cost</h4>
+                                </div>
+                                <div class="result-amount">
+                                    <span class="currency">KES</span>
+                                    <span class="amount" id="estimatedAmount">0</span>
+                                </div>
+                                <p class="result-note">This is an estimate. Final quote may vary based on specific requirements.</p>
+                                <button type="button" class="btn btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">
+                                    Get Detailed Quote
+                                </button>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-large">
+                                <i class="fas fa-calculator"></i> Calculate Estimate
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -684,6 +837,95 @@
                         <button type="submit" class="btn btn-primary btn-large">Get Free Consultation</button>
                         <p class="form-note">We'll contact you within 24 hours to schedule your consultation.</p>
                     </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Before/After Comparison Section -->
+    <section class="before-after">
+        <div class="container">
+            <span class="section-subtitle">Transformations</span>
+            <h2 class="section-title">See the Difference We Make</h2>
+            <p class="section-description" style="text-align: center; max-width: 700px; margin: 0 auto 3rem; color: var(--text-light);">Real results from real projects. See how we transformed these businesses.</p>
+            <div class="comparison-slider">
+                <div class="comparison-item">
+                    <div class="comparison-header">
+                        <h3>VELORA Skincare Website</h3>
+                        <p>Complete redesign and e-commerce integration</p>
+                    </div>
+                    <div class="comparison-images">
+                        <div class="before-image">
+                            <div class="image-label">Before</div>
+                            <div class="image-placeholder">
+                                <i class="fas fa-image"></i>
+                                <p>Old Design</p>
+                            </div>
+                        </div>
+                        <div class="after-image">
+                            <div class="image-label success">After</div>
+                            <div class="image-placeholder">
+                                <i class="fas fa-image"></i>
+                                <p>New Design</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comparison-stats">
+                        <div class="stat-box">
+                            <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
+                            <div class="stat-value">200%</div>
+                            <div class="stat-label">Sales Increase</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            <div class="stat-value">3.2s</div>
+                            <div class="stat-label">Load Time</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-icon"><i class="fas fa-users"></i></div>
+                            <div class="stat-value">150%</div>
+                            <div class="stat-label">Traffic Growth</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comparison-item">
+                    <div class="comparison-header">
+                        <h3>Restaurant Ordering System</h3>
+                        <p>From manual orders to automated online system</p>
+                    </div>
+                    <div class="comparison-images">
+                        <div class="before-image">
+                            <div class="image-label">Before</div>
+                            <div class="image-placeholder">
+                                <i class="fas fa-image"></i>
+                                <p>Manual Process</p>
+                            </div>
+                        </div>
+                        <div class="after-image">
+                            <div class="image-label success">After</div>
+                            <div class="image-placeholder">
+                                <i class="fas fa-image"></i>
+                                <p>Online System</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comparison-stats">
+                        <div class="stat-box">
+                            <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
+                            <div class="stat-value">40%</div>
+                            <div class="stat-label">Sales Increase</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-icon"><i class="fas fa-clock"></i></div>
+                            <div class="stat-value">50%</div>
+                            <div class="stat-label">Time Saved</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-icon"><i class="fas fa-smile"></i></div>
+                            <div class="stat-value">95%</div>
+                            <div class="stat-label">Customer Satisfaction</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
