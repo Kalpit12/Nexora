@@ -515,12 +515,12 @@ nav .container {
 .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2.5rem;
+    gap: 1.75rem;
 }
 
 .service-card {
     background: var(--white);
-    padding: 2.5rem;
+    padding: 1.8rem;
     border-radius: 20px;
     text-align: center;
     box-shadow: 0 5px 30px rgba(0, 0, 0, 0.08);
@@ -528,6 +528,10 @@ nav .container {
     position: relative;
     overflow: hidden;
     border: 1px solid rgba(99, 102, 241, 0.1);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 .service-card::before {
@@ -547,17 +551,17 @@ nav .container {
 }
 
 .service-card:hover {
-    transform: translateY(-15px) scale(1.02);
+    transform: translateY(-10px) scale(1.01);
     box-shadow: 0 15px 40px rgba(99, 102, 241, 0.2);
 }
 
 .service-card i {
-    font-size: 3.5rem;
+    font-size: 2.7rem;
     background: var(--gradient-primary);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     display: block;
     transition: transform 0.3s ease;
 }
@@ -567,20 +571,22 @@ nav .container {
 }
 
 .service-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
     color: var(--dark-color);
     font-weight: 700;
 }
 
 .service-card p {
     color: var(--text-light);
-    line-height: 1.8;
+    line-height: 1.65;
+    font-size: 0.96rem;
+    margin-top: auto;
 }
 
 /* Stats Section */
 .stats-section {
-    padding: 80px 0;
+    padding: 48px 0;
     background: var(--gradient-primary);
     color: var(--white);
     position: relative;
@@ -601,14 +607,14 @@ nav .container {
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 3rem;
+    gap: 1.4rem;
     position: relative;
     z-index: 1;
 }
 
 .stat-card {
     text-align: center;
-    padding: 2rem;
+    padding: 1.1rem;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     border-radius: 20px;
@@ -622,19 +628,19 @@ nav .container {
 }
 
 .stat-icon {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+    font-size: 1.6rem;
+    margin-bottom: 0.55rem;
     opacity: 0.9;
 }
 
 .stat-value {
-    font-size: 3.5rem;
+    font-size: 2.2rem;
     font-weight: 800;
     margin-bottom: 0.5rem;
 }
 
 .stat-text {
-    font-size: 1.1rem;
+    font-size: 0.9rem;
     opacity: 0.9;
     font-weight: 500;
 }
@@ -706,6 +712,33 @@ nav .container {
 
 .portfolio-item:hover img {
     transform: scale(1.15);
+}
+
+/* Featured projects badge */
+.portfolio-featured-badge {
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    z-index: 3;
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--white);
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+}
+
+.portfolio-item.featured {
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.14);
+}
+
+.portfolio-item.featured:hover {
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.22);
 }
 
 /* Fallback gradient backgrounds for portfolio items */
@@ -1272,22 +1305,38 @@ footer {
 
 .footer-content {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 3rem;
-    margin-bottom: 3rem;
+    grid-template-columns: 1.2fr 0.9fr 1.1fr;
+    gap: 2.5rem;
+    margin-bottom: 2.5rem;
+    align-items: start;
 }
 
 .footer-about h3 {
-    margin-bottom: 1.5rem;
+    margin-bottom: 0;
     color: var(--white);
-    font-size: 1.8rem;
+    font-size: 1.65rem;
     font-weight: 700;
 }
 
+.footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.footer-logo {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
 .footer-about p {
-    margin-bottom: 2rem;
+    margin-bottom: 1.25rem;
     color: #94a3b8;
-    line-height: 1.8;
+    line-height: 1.7;
+    max-width: 280px;
 }
 
 .social-links {
@@ -1317,17 +1366,20 @@ footer {
 }
 
 .footer-links h3 {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     font-size: 1.3rem;
     font-weight: 700;
 }
 
 .footer-links ul {
     list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem 1rem;
 }
 
 .footer-links ul li {
-    margin-bottom: 0.75rem;
+    margin-bottom: 0;
 }
 
 .footer-links ul li a {
@@ -1339,19 +1391,20 @@ footer {
 
 .footer-links ul li a:hover {
     color: var(--white);
-    transform: translateX(5px);
+    transform: translateY(-2px);
 }
 
 .footer-newsletter h3 {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     font-size: 1.3rem;
     font-weight: 700;
 }
 
 .footer-newsletter p {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     color: #94a3b8;
-    line-height: 1.8;
+    line-height: 1.7;
+    max-width: 360px;
 }
 
 .newsletter-form {
@@ -1398,9 +1451,23 @@ footer {
 
 .footer-bottom {
     text-align: center;
-    padding-top: 2rem;
+    padding-top: 1.5rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     color: #94a3b8;
+}
+
+@media (max-width: 992px) {
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .footer-newsletter {
+        grid-column: 1 / -1;
+    }
+
+    .footer-links ul {
+        gap: 0.6rem 0.9rem;
+    }
 }
 
 /* Responsive Design */
@@ -1897,6 +1964,31 @@ html {
     display: none;
 }
 
+/* Left-side WhatsApp quick contact */
+.whatsapp-left-float {
+    position: fixed;
+    left: 26px;
+    bottom: 30px;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    text-decoration: none;
+    box-shadow: 0 8px 26px rgba(18, 140, 126, 0.45);
+    z-index: 1000;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.whatsapp-left-float:hover {
+    transform: translateY(-3px) scale(1.06);
+    box-shadow: 0 12px 30px rgba(18, 140, 126, 0.55);
+}
+
 @media (max-width: 768px) {
     .chatbot-container {
         width: calc(100vw - 40px);
@@ -1916,6 +2008,14 @@ html {
     .faq-btn {
         padding: 0.65rem 0.875rem;
         font-size: 0.85rem;
+    }
+
+    .whatsapp-left-float {
+        left: 18px;
+        bottom: 20px;
+        width: 52px;
+        height: 52px;
+        font-size: 1.5rem;
     }
 }
 
@@ -2548,6 +2648,7 @@ html {
 }
 
 .view-details-btn {
+    display: inline-block;
     margin-top: 1rem;
     padding: 0.75rem 1.5rem;
     background: rgba(255, 255, 255, 0.2);
@@ -2559,6 +2660,8 @@ html {
     font-weight: 600;
     transition: all 0.3s ease;
     font-family: 'Poppins', sans-serif;
+    text-decoration: none;
+    font-size: 0.95rem;
 }
 
 .view-details-btn:hover {
@@ -2880,16 +2983,17 @@ html {
 
 /* Cost Calculator Section */
 .cost-calculator {
-    padding: 5rem 0;
+    padding: 6rem 0;
     background: var(--dark-color);
     color: white;
 }
 
 .calculator-content {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
+    grid-template-columns: minmax(320px, 1fr) minmax(380px, 520px);
+    gap: 3.25rem;
+    align-items: start;
+    justify-content: space-between;
 }
 
 .calculator-text .section-title,
@@ -2897,11 +3001,22 @@ html {
     color: white;
 }
 
+.calculator-text .section-title {
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.calculator-text p {
+    max-width: 520px;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.75;
+}
+
 .calculator-benefits {
-    margin-top: 2rem;
+    margin-top: 1.8rem;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.9rem;
 }
 
 .calc-benefit {
@@ -2918,33 +3033,36 @@ html {
 
 .calculator-card {
     background: rgba(255, 255, 255, 0.05);
-    padding: 2.5rem;
+    padding: 2rem;
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 55px rgba(0, 0, 0, 0.25);
 }
 
 .calculator-card h3 {
     color: white;
-    margin-bottom: 2rem;
-    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.35rem;
     text-align: center;
 }
 
 .calculator-form .form-group {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.15rem;
 }
 
 .calculator-form label {
     display: block;
     color: white;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
+    margin-bottom: 0.45rem;
+    font-weight: 600;
+    font-size: 0.96rem;
 }
 
 .calculator-form select,
 .calculator-form input[type="number"] {
     width: 100%;
-    padding: 0.875rem;
+    min-height: 50px;
+    padding: 0.8rem 0.9rem;
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 10px;
     background: rgba(255, 255, 255, 0.05);
@@ -2974,7 +3092,7 @@ html {
 .checkbox-group {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 0.75rem;
+    gap: 0.6rem;
 }
 
 .checkbox-label {
@@ -2983,7 +3101,7 @@ html {
     gap: 0.75rem;
     color: white;
     cursor: pointer;
-    padding: 0.75rem;
+    padding: 0.72rem 0.8rem;
     background: rgba(255, 255, 255, 0.05);
     border-radius: 8px;
     transition: all 0.3s ease;
@@ -3000,12 +3118,16 @@ html {
 }
 
 .calculator-result {
-    margin-top: 2rem;
-    padding: 2rem;
+    margin-top: 1.4rem;
+    padding: 1.6rem;
     background: rgba(99, 102, 241, 0.2);
     border: 2px solid var(--primary-color);
     border-radius: 15px;
     text-align: center;
+}
+
+.calculator-result + .btn.btn-primary.btn-large {
+    margin-top: 1.1rem;
 }
 
 .result-header {
@@ -3040,7 +3162,7 @@ html {
 }
 
 .result-amount .amount {
-    font-size: 3rem;
+    font-size: 2.8rem;
     font-weight: 700;
     color: white;
 }
@@ -3178,6 +3300,27 @@ html {
 @media (max-width: 768px) {
     .calculator-content {
         grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .cost-calculator {
+        padding: 4.25rem 0;
+    }
+
+    .calculator-text {
+        text-align: center;
+    }
+
+    .calculator-text p {
+        margin: 0 auto;
+    }
+
+    .calc-benefit {
+        justify-content: center;
+    }
+
+    .calculator-card {
+        padding: 1.4rem;
     }
     
     .comparison-slider {

@@ -237,24 +237,23 @@ if (contactForm) {
         submitButton.disabled = true;
         
         const formData = {
-            name: contactForm.querySelector('input[type="text"]').value,
-            email: contactForm.querySelector('input[type="email"]').value,
-            subject: contactForm.querySelectorAll('input[type="text"]')[1].value,
-            message: contactForm.querySelector('textarea').value
+            name: contactForm.querySelector('input[name="name"]').value,
+            email: contactForm.querySelector('input[name="email"]').value,
+            subject: contactForm.querySelector('input[name="subject"]').value,
+            message: contactForm.querySelector('textarea[name="message"]').value
         };
         
         try {
-            const response = await fetch('/api/contact', {
+            const response = await fetch('https://formspree.io/f/mvzjyddy', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Accept': 'application/json'
                 },
                 body: JSON.stringify(formData)
             });
-            
-            const data = await response.json();
-            
-            if (data.success) {
+
+            if (response.ok) {
                 submitButton.textContent = '✓ Message Sent!';
                 submitButton.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
                 contactForm.reset();
@@ -664,6 +663,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 webapp: 120000,
                 ecommerce: 150000,
                 redesign: 80000,
+                jobportal: 180000,
+                eventsplatform: 220000,
+                leadautomation: 200000,
+                skincareecommerce: 170000,
                 custom: 200000
             };
             
