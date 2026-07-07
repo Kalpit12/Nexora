@@ -91,10 +91,24 @@ nav .container {
 .logo-text {
     font-size: 1.5rem;
     font-weight: 700;
-    background: var(--gradient-primary);
+    background: linear-gradient(120deg, #6366f1 0%, #8b5cf6 35%, #ec4899 70%, #6366f1 100%);
+    background-size: 220% 220%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    animation: logoGradientFlow 4s ease-in-out infinite;
+}
+
+@keyframes logoGradientFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .nav-links {
@@ -123,13 +137,17 @@ nav .container {
     transition: width 0.3s ease;
 }
 
-.nav-links a:hover::after,
+.nav-links a:hover:not(.btn)::after,
 .nav-links a.active::after {
     width: 100%;
 }
 
-.nav-links a:hover {
+.nav-links a:hover:not(.btn) {
     color: var(--primary-color);
+}
+
+.nav-links .btn::after {
+    display: none;
 }
 
 .hamburger {
