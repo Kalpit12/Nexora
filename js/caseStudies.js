@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!pageUrl) return;
 
         item.addEventListener('click', (e) => {
-            if (e.target.closest('.view-details-btn')) return;
+            if (e.target.closest('a')) return;
             window.location.href = pageUrl;
         });
     });

@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEXORA DIGITAL | Web Development Agency</title>
+    <title>Nexora Digital | Websites & Products That Convert</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="image/svg+xml" href="images/logo.svg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Three.js for Floating Lines Animation -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/darkveil.css">
     <!-- Lenis Smooth Scroll -->
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
 </head>
@@ -19,18 +20,81 @@
         <div class="container">
             <div class="logo">
                 <a href="#home" class="logo-link">
-                    <img src="images/logo.png" alt="NEXORA DIGITAL Logo" class="logo-img">
-                    <span class="logo-text">NEXORA DIGITAL</span>
+                    <img src="images/logo.png" alt="Nexora Digital Logo" class="logo-img">
+                    <span class="logo-text">Nexora Digital</span>
                 </a>
             </div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
+                <li class="nav-item has-mega">
+                    <button type="button" class="nav-mega-trigger" aria-expanded="false" aria-controls="servicesMegaMenu">
+                        Services
+                    </button>
+                    <div class="mega-menu" id="servicesMegaMenu" role="region" aria-label="Services">
+                        <div class="mega-menu-intro">
+                            <p class="mega-menu-kicker">Capabilities</p>
+                            <p class="mega-menu-lede">Five focused practices — built to work together from strategy through launch.</p>
+                            <a href="#services" class="mega-menu-all">Explore all →</a>
+                        </div>
+                        <ul class="mega-menu-list">
+                            <li>
+                                <a href="services/application-system-development.html" class="mega-menu-item">
+                                    <span class="mega-menu-index">01</span>
+                                    <span class="mega-menu-icon" aria-hidden="true"><i class="fas fa-code"></i></span>
+                                    <span class="mega-menu-copy">
+                                        <strong>Application and System Development</strong>
+                                        <span>Secure, maintainable products that scale with your business</span>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="services/artificial-intelligence.html" class="mega-menu-item">
+                                    <span class="mega-menu-index">02</span>
+                                    <span class="mega-menu-icon" aria-hidden="true"><i class="fas fa-microchip"></i></span>
+                                    <span class="mega-menu-copy">
+                                        <strong>Artificial Intelligence (AI)</strong>
+                                        <span>Practical AI that improves process and product outcomes</span>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="services/seo.html" class="mega-menu-item">
+                                    <span class="mega-menu-index">03</span>
+                                    <span class="mega-menu-icon" aria-hidden="true"><i class="fas fa-chart-line"></i></span>
+                                    <span class="mega-menu-copy">
+                                        <strong>Search Engine Optimization (SEO)</strong>
+                                        <span>Discoverability systems that attract qualified demand</span>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="services/digital-marketing.html" class="mega-menu-item">
+                                    <span class="mega-menu-index">04</span>
+                                    <span class="mega-menu-icon" aria-hidden="true"><i class="fas fa-bullhorn"></i></span>
+                                    <span class="mega-menu-copy">
+                                        <strong>Digital Marketing &amp; Brand Execution</strong>
+                                        <span>Clear messaging and campaigns across every channel</span>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="services/ui-ux-design.html" class="mega-menu-item">
+                                    <span class="mega-menu-index">05</span>
+                                    <span class="mega-menu-icon" aria-hidden="true"><i class="fas fa-pen-ruler"></i></span>
+                                    <span class="mega-menu-copy">
+                                        <strong>UI/UX Design and Research</strong>
+                                        <span>Interfaces shaped by research, not decoration</span>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="#portfolio">Work</a></li>
                 <li><a href="#process">Process</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#faq">FAQ</a></li>
-                <li><a href="#contact" class="btn btn-primary">Contact Us</a></li>
+                <li><a href="#contact" class="btn btn-primary nav-cta">Let's talk →</a></li>
             </ul>
             <div class="hamburger">
                 <span></span>
@@ -42,130 +106,83 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="hero-background">
-            <div id="floatingLinesContainer" class="floating-lines-container"></div>
+        <div class="hero-background" aria-hidden="true">
+            <div class="hero-atmosphere"></div>
+            <div class="hero-darkveil" id="heroDarkVeil"></div>
         </div>
-        <div class="container">
+        <div class="container hero-layout">
             <div class="hero-content">
-                <div class="hero-badge">🚀 Digital Excellence</div>
-                <h1 class="hero-title">
-                    <span class="gradient-text">Transform</span> Your Online Presence
-                </h1>
-                <p class="hero-description">We create stunning, responsive websites and powerful digital strategies that help your business grow in the digital world.</p>
+                <p class="hero-brand">Nexora Digital</p>
+                <h1 class="hero-title">Websites and products that turn attention into growth</h1>
+                <p class="hero-description">We design and build digital experiences for ambitious teams — clear, fast, and built to convert.</p>
                 <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary btn-large">Get Started</a>
-                    <a href="#portfolio" class="btn btn-outline btn-large">View Our Work</a>
+                    <a href="#contact" class="btn btn-primary btn-large">Book a call</a>
+                    <a href="#portfolio" class="btn btn-outline btn-large">View work</a>
                 </div>
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <div class="stat-number" data-target="2">0</div>
-                        <div class="stat-label">Projects Completed</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number" data-target="2">0</div>
-                        <div class="stat-label">Happy Clients</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number" data-target="2">0</div>
-                        <div class="stat-label">Years Experience</div>
-                    </div>
+            </div>
+        </div>
+        <div class="hero-proof">
+            <div class="container">
+                <p class="hero-proof-label">Selected work</p>
+                <div class="hero-logo-strip">
+                    <a href="projects/aksharjobs.html">Akshar Jobs</a>
+                    <a href="projects/aksharevents.html">Axar Events</a>
+                    <a href="projects/velora.html">Velora</a>
+                    <a href="projects/leadora.html">Leadora</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
+    <!-- Services / Capabilities -->
     <section id="services" class="services">
-        <div class="container">
-            <h2 class="section-title">Our Services</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <i class="fas fa-laptop-code"></i>
-                    <h3>Full-Stack Development</h3>
-                    <p>Complete web solutions from idea to launch.</p>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-paint-brush"></i>
-                    <h3>Frontend Development</h3>
-                    <p>Fast, responsive interfaces users love.</p>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-server"></i>
-                    <h3>Backend Development</h3>
-                    <p>Secure, scalable backend systems that perform.</p>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-share-alt"></i>
-                    <h3>Social Media Marketing</h3>
-                    <p>Campaigns that grow reach and drive action.</p>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-palette"></i>
-                    <h3>Graphic Design</h3>
-                    <p>Bold visuals that strengthen your brand identity.</p>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-tools"></i>
-                    <h3>Website Maintenance & Support</h3>
-                    <p>Reliable updates, security, and ongoing support.</p>
-                </div>
+        <div class="container services-layout">
+            <div class="services-intro">
+                <span class="section-subtitle">What we do</span>
+                <h2 class="section-title section-title-left">Our capabilities</h2>
+                <p class="section-intro section-intro-left">A focused set of services designed to work together — structured around outcomes, not deliverable checklists.</p>
             </div>
-        </div>
-    </section>
-
-    <!-- Free Tool Lead Magnet Section -->
-    <section class="lead-magnet">
-        <div class="container">
-            <div class="lead-magnet-content">
-                <div class="lead-magnet-text">
-                    <span class="lead-badge">Free Resource</span>
-                    <h2>Get Your Free Website Speed Optimization Checklist</h2>
-                    <p>Download our comprehensive checklist to improve your website's performance, boost SEO rankings, and enhance user experience. Used by 100+ businesses to achieve faster load times.</p>
-                    <div class="lead-benefits">
-                        <div class="lead-benefit-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span>20+ optimization strategies</span>
-                        </div>
-                        <div class="lead-benefit-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Step-by-step implementation guide</span>
-                        </div>
-                        <div class="lead-benefit-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Performance monitoring tips</span>
-                        </div>
-                        <div class="lead-benefit-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span>SEO improvement techniques</span>
-                        </div>
+            <div class="capabilities-grid">
+                <article class="capability-item" id="service-app-dev">
+                    <span class="capability-icon" aria-hidden="true"><i class="fas fa-code"></i></span>
+                    <div class="capability-body">
+                        <h3>Application and System Development</h3>
+                        <p>Secure, maintainable applications built to grow with your business.</p>
+                        <a href="services/application-system-development.html" class="capability-more">View more →</a>
                     </div>
-                </div>
-                <div class="lead-magnet-form-wrapper">
-                    <div class="lead-form-card">
-                        <div class="lead-form-icon">
-                            <i class="fas fa-download"></i>
-                        </div>
-                        <h3>Download Your Free Checklist</h3>
-                        <p>Enter your email and get instant access</p>
-                        <form class="lead-magnet-form" id="leadMagnetForm">
-                            <div class="form-group">
-                                <input type="text" placeholder="Your Name" required>
-                            </div>
-                            <div class="form-group">
-                                <input type="email" placeholder="Your Email" required>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" placeholder="Company Name (Optional)">
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-large">
-                                <i class="fas fa-download"></i> Get Free Checklist
-                            </button>
-                            <p class="form-privacy">
-                                <i class="fas fa-lock"></i> We respect your privacy. Unsubscribe at any time.
-                            </p>
-                        </form>
+                </article>
+                <article class="capability-item" id="service-ai">
+                    <span class="capability-icon" aria-hidden="true"><i class="fas fa-microchip"></i></span>
+                    <div class="capability-body">
+                        <h3>Artificial Intelligence (AI)</h3>
+                        <p>Practical AI that improves processes and unlocks new product capabilities.</p>
+                        <a href="services/artificial-intelligence.html" class="capability-more">View more →</a>
                     </div>
-                </div>
+                </article>
+                <article class="capability-item" id="service-seo">
+                    <span class="capability-icon" aria-hidden="true"><i class="fas fa-chart-line"></i></span>
+                    <div class="capability-body">
+                        <h3>Search Engine Optimization (SEO)</h3>
+                        <p>Discoverability systems that attract qualified traffic and convert intent.</p>
+                        <a href="services/seo.html" class="capability-more">View more →</a>
+                    </div>
+                </article>
+                <article class="capability-item" id="service-marketing">
+                    <span class="capability-icon" aria-hidden="true"><i class="fas fa-bullhorn"></i></span>
+                    <div class="capability-body">
+                        <h3>Digital Marketing &amp; Brand Execution</h3>
+                        <p>Clear messaging and campaigns that stay cohesive across every channel.</p>
+                        <a href="services/digital-marketing.html" class="capability-more">View more →</a>
+                    </div>
+                </article>
+                <article class="capability-item" id="service-uiux">
+                    <span class="capability-icon" aria-hidden="true"><i class="fas fa-pen-ruler"></i></span>
+                    <div class="capability-body">
+                        <h3>UI/UX Design and Research</h3>
+                        <p>Interfaces shaped by research — intentional, measurable, and easy to use.</p>
+                        <a href="services/ui-ux-design.html" class="capability-more">View more →</a>
+                    </div>
+                </article>
             </div>
         </div>
     </section>
@@ -173,449 +190,119 @@
     <!-- Portfolio Section -->
     <section id="portfolio" class="portfolio">
         <div class="container">
-            <h2 class="section-title">Our Work</h2>
-            <div class="portfolio-filter">
-                <button class="active" data-filter="all">All</button>
-                <button data-filter="web">Web Apps</button>
-                <button data-filter="ecommerce">E-commerce</button>
-                <button data-filter="mobile">Mobile</button>
-            </div>
-            <div class="portfolio-grid">
-                <div class="portfolio-item featured" data-category="web" data-project="akshar" data-url="projects/aksharjobs.html">
-                    <span class="portfolio-featured-badge">Featured</span>
-                    <img src="images/projects/aksharjobs/homepage.png" alt="AKSHAR JOBS" loading="lazy">
-                    <div class="portfolio-overlay">
-                        <h3>AKSHAR JOBS</h3>
-                        <p>Web App Development</p>
-                        <a href="projects/aksharjobs.html" class="view-details-btn">View Details</a>
-                    </div>
-                </div>
-                <div class="portfolio-item featured" data-category="web" data-project="aksharevents" data-url="projects/aksharevents.html">
-                    <span class="portfolio-featured-badge">Featured</span>
-                    <img src="images/projects/axarevents/home.png" alt="AXAR EVENTS" loading="lazy">
-                    <div class="portfolio-overlay">
-                        <h3>AXAR EVENTS</h3>
-                        <p>Events Platform</p>
-                        <a href="projects/aksharevents.html" class="view-details-btn">View Details</a>
-                    </div>
-                </div>
-                <div class="portfolio-item featured" data-category="web" data-project="velora" data-url="projects/velora.html">
-                    <span class="portfolio-featured-badge">Featured</span>
-                    <img src="images/projects/velora/home.png" alt="VELORA Skincare Website" loading="lazy">
-                    <div class="portfolio-overlay">
-                        <h3>VELORA</h3>
-                        <p>Skincare Website</p>
-                        <a href="projects/velora.html" class="view-details-btn">View Details</a>
-                    </div>
-                </div>
-                <div class="portfolio-item featured" data-category="web" data-project="leadora" data-url="projects/leadora.html">
-                    <span class="portfolio-featured-badge">Featured</span>
-                    <img src="images/projects/leadora/home.png" alt="Leadora AI Lead Automation Platform" loading="lazy">
-                    <div class="portfolio-overlay">
-                        <h3>LEADORA</h3>
-                        <p>AI Lead Automation Platform</p>
-                        <a href="projects/leadora.html" class="view-details-btn">View Details</a>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-category="web" data-project="corporate" data-url="projects/corporate.html">
-                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&q=80" alt="Corporate Website" loading="lazy">
-                    <div class="portfolio-overlay">
-                        <h3>Corporate Website</h3>
-                        <p>Web Development</p>
-                        <a href="projects/corporate.html" class="view-details-btn">View Details</a>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-category="ecommerce" data-project="ecommerce" data-url="projects/ecommerce.html">
-                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop&q=80" alt="E-commerce Store" loading="lazy">
-                    <div class="portfolio-overlay">
-                        <h3>E-commerce Store</h3>
-                        <p>E-commerce</p>
-                        <a href="projects/ecommerce.html" class="view-details-btn">View Details</a>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-category="web" data-project="webapp" data-url="projects/webapp.html">
-                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=600&fit=crop&q=80" alt="Web Application" loading="lazy">
-                    <div class="portfolio-overlay">
-                        <h3>Web Application</h3>
-                        <p>Full-Stack Development</p>
-                        <a href="projects/webapp.html" class="view-details-btn">View Details</a>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-category="web" data-project="inventory" data-url="projects/inventory.html">
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&q=80" alt="Business Inventory Management System" loading="lazy">
-                    <div class="portfolio-overlay">
-                        <h3>Business Inventory Management System</h3>
-                        <p>Web App for SMEs</p>
-                        <a href="projects/inventory.html" class="view-details-btn">View Details</a>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-category="web" data-project="restaurant" data-url="projects/restaurant.html">
-                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&h=600&fit=crop&q=80" alt="Restaurant Ordering System" loading="lazy">
-                    <div class="portfolio-overlay">
-                        <h3>Restaurant Ordering System</h3>
-                        <p>Online Menu & Booking Platform</p>
-                        <a href="projects/restaurant.html" class="view-details-btn">View Details</a>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-category="web" data-project="healthcare" data-url="projects/healthcare.html">
-                    <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&h=600&fit=crop&q=80" alt="Healthcare Appointment Booking" loading="lazy">
-                    <div class="portfolio-overlay">
-                        <h3>Healthcare Appointment Booking</h3>
-                        <p>Patient Portal & Scheduling</p>
-                        <a href="projects/healthcare.html" class="view-details-btn">View Details</a>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-category="web" data-project="analytics" data-url="projects/analytics.html">
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&q=80" alt="Analytics Dashboard" loading="lazy">
-                    <div class="portfolio-overlay">
-                        <h3>Analytics Dashboard</h3>
-                        <p>Data Visualization & Reporting</p>
-                        <a href="projects/analytics.html" class="view-details-btn">View Details</a>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-category="mobile" data-project="mobile" data-url="projects/mobile.html">
-                    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop&q=80" alt="Mobile Application" loading="lazy">
-                    <div class="portfolio-overlay">
-                        <h3>Mobile Application</h3>
-                        <p>iOS & Android</p>
-                        <a href="projects/mobile.html" class="view-details-btn">View Details</a>
-                    </div>
-                </div>
+            <span class="section-subtitle">Selected engagements</span>
+            <h2 class="section-title">Featured work</h2>
+            <p class="section-description portfolio-intro">Real products we designed and shipped — not stock placeholders.</p>
+            <div class="portfolio-grid portfolio-grid-featured">
+                <article class="portfolio-item featured" data-category="web" data-project="akshar" data-url="projects/aksharjobs.html">
+                    <a href="projects/aksharjobs.html" class="portfolio-link">
+                        <img src="images/projects/aksharjobs/homepage.png" alt="Akshar Jobs platform" loading="lazy">
+                        <div class="portfolio-meta">
+                            <h3>Akshar Jobs</h3>
+                            <p class="portfolio-outcome">Job marketplace connecting talent with employers across Kenya.</p>
+                            <span class="portfolio-cta">View case</span>
+                        </div>
+                    </a>
+                </article>
+                <article class="portfolio-item featured" data-category="web" data-project="aksharevents" data-url="projects/aksharevents.html">
+                    <a href="projects/aksharevents.html" class="portfolio-link">
+                        <img src="images/projects/axarevents/home.png" alt="Axar Events platform" loading="lazy">
+                        <div class="portfolio-meta">
+                            <h3>Axar Events</h3>
+                            <p class="portfolio-outcome">Event discovery and booking for tourism and live experiences.</p>
+                            <span class="portfolio-cta">View case</span>
+                        </div>
+                    </a>
+                </article>
+                <article class="portfolio-item featured" data-category="web" data-project="velora" data-url="projects/velora.html">
+                    <a href="projects/velora.html" class="portfolio-link">
+                        <img src="images/projects/velora/home.png" alt="Velora skincare website" loading="lazy">
+                        <div class="portfolio-meta">
+                            <h3>Velora</h3>
+                            <p class="portfolio-outcome">Skincare brand site built to turn browsers into buyers.</p>
+                            <span class="portfolio-cta">View case</span>
+                        </div>
+                    </a>
+                </article>
+                <article class="portfolio-item featured" data-category="web" data-project="leadora" data-url="projects/leadora.html">
+                    <a href="projects/leadora.html" class="portfolio-link">
+                        <img src="images/projects/leadora/home.png" alt="Leadora AI lead automation platform" loading="lazy">
+                        <div class="portfolio-meta">
+                            <h3>Leadora</h3>
+                            <p class="portfolio-outcome">AI lead automation that turns inquiries into qualified pipelines.</p>
+                            <span class="portfolio-cta">View case</span>
+                        </div>
+                    </a>
+                </article>
             </div>
         </div>
     </section>
 
-    <!-- Stats Section -->
-    <section class="stats-section">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="fas fa-trophy"></i></div>
-                    <div class="stat-value" data-target="2">0</div>
-                    <div class="stat-text">Projects Completed</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="fas fa-users"></i></div>
-                    <div class="stat-value" data-target="2">0</div>
-                    <div class="stat-text">Happy Clients</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="fas fa-code"></i></div>
-                    <div class="stat-value" data-target="12">0</div>
-                    <div class="stat-text">Technologies</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon"><i class="fas fa-globe"></i></div>
-                    <div class="stat-value" data-target="1">0</div>
-                    <div class="stat-text">Countries Served</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Process Section -->
+    <!-- Process / Principles -->
     <section id="process" class="process">
-        <div class="container">
-            <span class="section-subtitle">Our Process</span>
-            <h2 class="section-title">How We Work</h2>
-            <p class="section-description" style="text-align: center; max-width: 700px; margin: 0 auto 4rem; color: var(--text-light);">We follow a proven methodology to ensure your project is delivered on time, within budget, and exceeds expectations.</p>
-            <div class="process-timeline">
-                <div class="process-step">
-                    <div class="process-icon">
-                        <i class="fas fa-search"></i>
-                    </div>
-                    <div class="process-number">01</div>
-                    <h3>Discovery & Planning</h3>
-                    <p>We start by understanding your business, goals, and target audience. Through detailed consultations, we create a comprehensive project plan tailored to your needs.</p>
-                    <ul class="process-features">
-                        <li>Business analysis</li>
-                        <li>Goal setting</li>
-                        <li>Technical requirements</li>
-                        <li>Project roadmap</li>
-                    </ul>
-                </div>
-                <div class="process-step">
-                    <div class="process-icon">
-                        <i class="fas fa-pencil-ruler"></i>
-                    </div>
-                    <div class="process-number">02</div>
-                    <h3>Design & Development</h3>
-                    <p>Our team creates stunning designs and builds robust solutions using the latest technologies. You'll receive regular updates and can provide feedback throughout.</p>
-                    <ul class="process-features">
-                        <li>UI/UX design</li>
-                        <li>Responsive development</li>
-                        <li>Regular updates</li>
-                        <li>Client feedback integration</li>
-                    </ul>
-                </div>
-                <div class="process-step">
-                    <div class="process-icon">
-                        <i class="fas fa-vial"></i>
-                    </div>
-                    <div class="process-number">03</div>
-                    <h3>Testing & Quality Assurance</h3>
-                    <p>We rigorously test every feature across devices and browsers to ensure flawless performance. Your site will be fast, secure, and bug-free.</p>
-                    <ul class="process-features">
-                        <li>Cross-browser testing</li>
-                        <li>Performance optimization</li>
-                        <li>Security checks</li>
-                        <li>Bug fixes</li>
-                    </ul>
-                </div>
-                <div class="process-step">
-                    <div class="process-icon">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <div class="process-number">04</div>
-                    <h3>Launch & Support</h3>
-                    <p>We handle the launch smoothly and provide ongoing support. Your success is our priority, and we're here to help you grow.</p>
-                    <ul class="process-features">
-                        <li>Seamless deployment</li>
-                        <li>Training & documentation</li>
-                        <li>Ongoing support</li>
-                        <li>Performance monitoring</li>
-                    </ul>
-                </div>
+        <div class="container process-layout">
+            <div class="process-intro">
+                <span class="section-subtitle">How we work</span>
+                <h2 class="section-title section-title-left">Principles that guide delivery</h2>
+                <p class="section-intro section-intro-left">Not a generic waterfall. These are the decisions that keep projects clear, measurable, and built to last.</p>
             </div>
+            <ol class="principles-list">
+                <li class="principle-item">
+                    <span class="principle-number" aria-hidden="true">01</span>
+                    <div class="principle-body">
+                        <h3>Strategic planning</h3>
+                        <p>We align every engagement around business priorities, technical realities, and the outcomes that actually matter.</p>
+                    </div>
+                </li>
+                <li class="principle-item">
+                    <span class="principle-number" aria-hidden="true">02</span>
+                    <div class="principle-body">
+                        <h3>Defined outcomes</h3>
+                        <p>Each project starts with clear scope, clear ownership, and measurable markers of progress.</p>
+                    </div>
+                </li>
+                <li class="principle-item">
+                    <span class="principle-number" aria-hidden="true">03</span>
+                    <div class="principle-body">
+                        <h3>Transparent iteration</h3>
+                        <p>We work in visible loops so feedback lands early, decisions stay clear, and momentum does not get lost.</p>
+                    </div>
+                </li>
+                <li class="principle-item">
+                    <span class="principle-number" aria-hidden="true">04</span>
+                    <div class="principle-body">
+                        <h3>Built for what comes next</h3>
+                        <p>We architect for long-term flexibility so today’s delivery does not become tomorrow’s constraint.</p>
+                    </div>
+                </li>
+            </ol>
         </div>
     </section>
 
     <!-- About Section -->
     <section id="about" class="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <span class="section-subtitle">About Us</span>
-                    <h2 class="section-title">We Build Digital Experiences That Drive Real Business Results</h2>
-                    <p><strong>Your success is our mission.</strong> At NEXORA DIGITAL, we're not just another web development agency. We're your strategic partners in digital transformation, dedicated to turning your vision into a powerful online presence that generates leads, increases sales, and grows your business.</p>
-                    <p>With a proven track record of delivering high-performing websites and applications, we combine cutting-edge technology with strategic thinking to create solutions that don't just look great—they drive measurable results. Every project we undertake is backed by our commitment to excellence, transparency, and your success.</p>
-                    <div class="about-features">
-                        <div class="feature-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>100% Client Satisfaction</strong> - Every project delivered exceeds expectations</span>
-                        </div>
-                        <div class="feature-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>Results-Driven Approach</strong> - We focus on ROI, not just pretty designs</span>
-                        </div>
-                        <div class="feature-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>Transparent Communication</strong> - Regular updates, no surprises, guaranteed</span>
-                        </div>
-                        <div class="feature-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>On-Time Delivery</strong> - We meet deadlines, every single time</span>
-                        </div>
-                        <div class="feature-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>Modern Technology Stack</strong> - Latest tools for maximum performance</span>
-                        </div>
-                        <div class="feature-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span><strong>24/7 Support</strong> - We're here when you need us, always</span>
-                        </div>
-                    </div>
-                    <div class="trust-badges" style="margin: 2rem 0; padding: 1.5rem; background: rgba(99, 102, 241, 0.05); border-radius: 15px; border-left: 4px solid var(--primary-color);">
-                        <p style="margin: 0; font-weight: 600; color: var(--dark-color); margin-bottom: 0.5rem;">Why Choose Us Over Competitors?</p>
-                        <ul style="margin: 0; padding-left: 1.5rem; color: var(--text-color);">
-                            <li style="margin-bottom: 0.5rem;">Fast turnaround times without compromising quality</li>
-                            <li style="margin-bottom: 0.5rem;">Competitive pricing with transparent, no-hidden-fee structure</li>
-                            <li style="margin-bottom: 0.5rem;">Dedicated project manager for seamless communication</li>
-                            <li style="margin-bottom: 0.5rem;">Post-launch support and optimization included</li>
-                            <li>Money-back guarantee if you're not satisfied with our work</li>
-                        </ul>
-                    </div>
-                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem;">
-                        <a href="#contact" class="btn btn-primary">Start Your Project Today</a>
-                        <a href="#portfolio" class="btn btn-outline">View Our Work</a>
-                    </div>
-                </div>
-                <div class="about-image">
-                    <div class="about-card">
-                        <div class="card-content">
-                            <i class="fas fa-lightbulb"></i>
-                            <h3>Innovation</h3>
-                            <p>Cutting-edge solutions that keep you ahead of competitors</p>
-                        </div>
-                    </div>
-                    <div class="about-card">
-                        <div class="card-content">
-                            <i class="fas fa-rocket"></i>
-                            <h3>Performance</h3>
-                            <p>Lightning-fast websites that convert visitors into customers</p>
-                        </div>
-                    </div>
-                    <div class="about-card">
-                        <div class="card-content">
-                            <i class="fas fa-shield-alt"></i>
-                            <h3>Reliability</h3>
-                            <p>Trusted partner with proven track record of success</p>
-                        </div>
-                    </div>
-                    <div class="about-card">
-                        <div class="card-content">
-                            <i class="fas fa-chart-line"></i>
-                            <h3>Growth</h3>
-                            <p>Solutions designed to scale with your business</p>
-                        </div>
-                    </div>
-                </div>
+        <div class="container about-simple">
+            <div class="about-simple-copy">
+                <span class="section-subtitle">About us</span>
+                <h2 class="section-title section-title-left">We build digital experiences that drive real results</h2>
+                <p>Nexora Digital partners with ambitious teams to design, build, and scale web experiences that turn attention into measurable growth. We combine engineering rigor with clear communication — so you always know what is shipping and why.</p>
+                <a href="#contact" class="btn btn-primary">Start a project</a>
             </div>
-        </div>
-    </section>
-
-    <!-- Trust Badges Section -->
-    <section class="trust-badges">
-        <div class="container">
-            <div class="trust-content">
-                <div class="trust-text">
-                    <span class="section-subtitle">Why Choose Us</span>
-                    <h2 class="section-title">Your Success is Our Guarantee</h2>
-                    <p>We stand behind our work with industry-leading guarantees and commitments</p>
+            <div class="trust-strip">
+                <div class="trust-point">
+                    <span class="trust-point-label">01</span>
+                    <h3>Clear scopes</h3>
+                    <p>Milestones and decision points agreed before we build.</p>
                 </div>
-                <div class="badges-grid">
-                    <div class="badge-card">
-                        <div class="badge-icon">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <h3>100% Satisfaction Guarantee</h3>
-                        <p>Not happy? We'll make it right or provide a full refund. Your success is our priority.</p>
-                    </div>
-                    <div class="badge-card">
-                        <div class="badge-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <h3>On-Time Delivery</h3>
-                        <p>We meet deadlines, every single time. Late delivery? You get a discount on your next project.</p>
-                    </div>
-                    <div class="badge-card">
-                        <div class="badge-icon">
-                            <i class="fas fa-headset"></i>
-                        </div>
-                        <h3>24/7 Support</h3>
-                        <p>Round-the-clock support for all our clients. We're here when you need us, always.</p>
-                    </div>
-                    <div class="badge-card">
-                        <div class="badge-icon">
-                            <i class="fas fa-lock"></i>
-                        </div>
-                        <h3>Secure & Protected</h3>
-                        <p>Your data and projects are protected with enterprise-grade security measures.</p>
-                    </div>
-                    <div class="badge-card">
-                        <div class="badge-icon">
-                            <i class="fas fa-certificate"></i>
-                        </div>
-                        <h3>Certified Professionals</h3>
-                        <p>Our team holds certifications in the latest technologies and best practices.</p>
-                    </div>
-                    <div class="badge-card">
-                        <div class="badge-icon">
-                            <i class="fas fa-handshake"></i>
-                        </div>
-                        <h3>Transparent Pricing</h3>
-                        <p>No hidden fees, no surprises. Clear pricing with detailed breakdowns for every project.</p>
-                    </div>
+                <div class="trust-point">
+                    <span class="trust-point-label">02</span>
+                    <h3>Transparent pricing</h3>
+                    <p>No hidden fees — estimates before any engagement begins.</p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Project Cost Calculator Section -->
-    <section class="cost-calculator">
-        <div class="container">
-            <div class="calculator-content">
-                <div class="calculator-text">
-                    <span class="section-subtitle">Free Estimate</span>
-                    <h2 class="section-title">Get an Instant Project Estimate</h2>
-                    <p>Answer a few quick questions and get an estimated cost for your project. No commitment required.</p>
-                    <div class="calculator-benefits">
-                        <div class="calc-benefit">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Instant estimate in 2 minutes</span>
-                        </div>
-                        <div class="calc-benefit">
-                            <i class="fas fa-check-circle"></i>
-                            <span>No credit card required</span>
-                        </div>
-                        <div class="calc-benefit">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Get detailed quote via email</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="calculator-form-wrapper">
-                    <div class="calculator-card">
-                        <h3>Project Cost Calculator</h3>
-                        <form class="calculator-form" id="costCalculatorForm">
-                            <div class="form-group">
-                                <label>Project Type</label>
-                                <select id="projectType" required>
-                                    <option value="">Select project type</option>
-                                    <option value="website">Website (5-10 pages)</option>
-                                    <option value="webapp">Web Application</option>
-                                    <option value="ecommerce">E-commerce Store</option>
-                                    <option value="redesign">Website Redesign</option>
-                                    <option value="jobportal">Job Portal (AksharJobs style)</option>
-                                    <option value="eventsplatform">Events Platform (AxarEvents style)</option>
-                                    <option value="leadautomation">AI Lead Automation (Leadora style)</option>
-                                    <option value="skincareecommerce">Premium E-commerce (Velora style)</option>
-                                    <option value="custom">Custom Solution</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Number of Pages/Features</label>
-                                <input type="number" id="pageCount" min="1" max="50" value="5" required>
-                                <span class="form-hint">Approximate number of pages or main features</span>
-                            </div>
-                            <div class="form-group">
-                                <label>Design Complexity</label>
-                                <select id="designComplexity" required>
-                                    <option value="simple">Simple (Template-based)</option>
-                                    <option value="moderate" selected>Moderate (Custom Design)</option>
-                                    <option value="complex">Complex (Fully Custom)</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Additional Features</label>
-                                <div class="checkbox-group">
-                                    <label class="checkbox-label">
-                                        <input type="checkbox" value="seo" id="featureSeo">
-                                        <span>SEO Optimization</span>
-                                    </label>
-                                    <label class="checkbox-label">
-                                        <input type="checkbox" value="cms" id="featureCms">
-                                        <span>Content Management System</span>
-                                    </label>
-                                    <label class="checkbox-label">
-                                        <input type="checkbox" value="payment" id="featurePayment">
-                                        <span>Payment Integration</span>
-                                    </label>
-                                    <label class="checkbox-label">
-                                        <input type="checkbox" value="analytics" id="featureAnalytics">
-                                        <span>Analytics Setup</span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="calculator-result" id="calculatorResult" style="display: none;">
-                                <div class="result-header">
-                                    <i class="fas fa-calculator"></i>
-                                    <h4>Estimated Cost</h4>
-                                </div>
-                                <div class="result-amount">
-                                    <span class="currency">KES</span>
-                                    <span class="amount" id="estimatedAmount">0</span>
-                                </div>
-                                <p class="result-note">This is an estimate. Final quote may vary based on specific requirements.</p>
-                                <button type="button" class="btn btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">
-                                    Get Detailed Quote
-                                </button>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-large">
-                                <i class="fas fa-calculator"></i> Calculate Estimate
-                            </button>
-                        </form>
-                    </div>
+                <div class="trust-point">
+                    <span class="trust-point-label">03</span>
+                    <h3>Delivery for scale</h3>
+                    <p>Shaped for long-term use, not short-term wins.</p>
                 </div>
             </div>
         </div>
@@ -625,336 +312,108 @@
     <section id="pricing" class="pricing">
         <div class="container">
             <span class="section-subtitle">Pricing</span>
-            <h2 class="section-title">Choose Your Plan</h2>
-            <p class="section-description" style="text-align: center; max-width: 700px; margin: 0 auto 4rem; color: var(--text-light);">Transparent pricing with no hidden fees. All plans include our quality guarantee.</p>
-            <div class="pricing-grid">
-                <div class="pricing-card">
+            <h2 class="section-title">Transparent starting points</h2>
+            <p class="section-intro">Starting prices in KES. Final quotes are scoped to your goals, timeline, and complexity.</p>
+            <div class="pricing-grid pricing-grid-bands">
+                <article class="pricing-card">
                     <div class="pricing-header">
-                        <h3>Starter</h3>
+                        <h3>Marketing site</h3>
+                        <p class="pricing-description">Brand-aligned brochure or lead-gen site for small teams and startups.</p>
                         <div class="pricing-price">
+                            <span class="price-from">From</span>
                             <span class="currency">KES</span>
                             <span class="amount">50,000</span>
-                            <span class="period">one-time</span>
                         </div>
-                        <p class="pricing-description">Perfect for small businesses and startups</p>
+                        <p class="pricing-timeline">Typical timeline · 2–4 weeks</p>
                     </div>
                     <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> Up to 5 pages</li>
-                        <li><i class="fas fa-check"></i> Responsive design</li>
-                        <li><i class="fas fa-check"></i> Basic SEO optimization</li>
-                        <li><i class="fas fa-check"></i> Contact form</li>
-                        <li><i class="fas fa-check"></i> Social media integration</li>
-                        <li><i class="fas fa-check"></i> 30 days support</li>
-                        <li><i class="fas fa-check"></i> 2-3 weeks delivery</li>
+                        <li>5–8 responsive pages</li>
+                        <li>Clear brand UI and contact / lead capture</li>
+                        <li>Foundational SEO setup</li>
+                        <li>30 days post-launch support</li>
                     </ul>
-                    <a href="#contact" class="btn btn-outline btn-large">Get Started</a>
-                </div>
-                
-                <div class="pricing-card featured">
-                    <div class="pricing-badge">Most Popular</div>
+                    <a href="#contact" class="btn btn-outline contact-plan-link" data-interest="Application and System Development" data-budget="KES 50K – 120K">Book a call</a>
+                </article>
+
+                <article class="pricing-card featured">
+                    <span class="pricing-badge">Recommended</span>
                     <div class="pricing-header">
-                        <h3>Professional</h3>
+                        <h3>Growth site / store</h3>
+                        <p class="pricing-description">Custom design with CMS or commerce — built to convert and iterate.</p>
                         <div class="pricing-price">
+                            <span class="price-from">From</span>
                             <span class="currency">KES</span>
                             <span class="amount">120,000</span>
-                            <span class="period">one-time</span>
                         </div>
-                        <p class="pricing-description">Ideal for growing businesses</p>
+                        <p class="pricing-timeline">Typical timeline · 4–6 weeks</p>
                     </div>
                     <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> Up to 10 pages</li>
-                        <li><i class="fas fa-check"></i> Custom design</li>
-                        <li><i class="fas fa-check"></i> Advanced SEO</li>
-                        <li><i class="fas fa-check"></i> Content management system</li>
-                        <li><i class="fas fa-check"></i> E-commerce integration</li>
-                        <li><i class="fas fa-check"></i> Analytics setup</li>
-                        <li><i class="fas fa-check"></i> 60 days support</li>
-                        <li><i class="fas fa-check"></i> 4-6 weeks delivery</li>
+                        <li>Custom UI and content structure</li>
+                        <li>CMS or e-commerce integration</li>
+                        <li>SEO + analytics foundation</li>
+                        <li>60 days post-launch support</li>
                     </ul>
-                    <a href="#contact" class="btn btn-primary btn-large">Get Started</a>
-                </div>
-                
-                <div class="pricing-card">
+                    <a href="#contact" class="btn btn-primary contact-plan-link" data-interest="Application and System Development" data-budget="KES 120K – 250K">Book a call</a>
+                </article>
+
+                <article class="pricing-card">
                     <div class="pricing-header">
-                        <h3>Enterprise</h3>
+                        <h3>Product / web app</h3>
+                        <p class="pricing-description">Custom platforms — auth, dashboards, APIs, and workflows scoped in discovery.</p>
                         <div class="pricing-price">
+                            <span class="price-from">From</span>
                             <span class="currency">KES</span>
                             <span class="amount">250,000</span>
-                            <span class="period">one-time</span>
                         </div>
-                        <p class="pricing-description">For large-scale projects</p>
+                        <p class="pricing-timeline">Typical timeline · 8–12+ weeks</p>
                     </div>
                     <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> Unlimited pages</li>
-                        <li><i class="fas fa-check"></i> Custom web application</li>
-                        <li><i class="fas fa-check"></i> Full-stack development</li>
-                        <li><i class="fas fa-check"></i> API integration</li>
-                        <li><i class="fas fa-check"></i> Advanced features</li>
-                        <li><i class="fas fa-check"></i> Performance optimization</li>
-                        <li><i class="fas fa-check"></i> 90 days support</li>
-                        <li><i class="fas fa-check"></i> 8-12 weeks delivery</li>
+                        <li>Full-stack product architecture</li>
+                        <li>Core features scoped to your roadmap</li>
+                        <li>Performance and security baselines</li>
+                        <li>90 days post-launch support</li>
                     </ul>
-                    <a href="#contact" class="btn btn-outline btn-large">Get Started</a>
-                </div>
-                
-                <div class="pricing-card custom">
-                    <div class="pricing-header">
-                        <h3>Custom</h3>
-                        <div class="pricing-price">
-                            <span class="currency">KES</span>
-                            <span class="amount">As Per Request</span>
-                            <span class="period"></span>
-                        </div>
-                        <p class="pricing-description">Tailored solution for your unique needs</p>
-                    </div>
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> Fully customized solution</li>
-                        <li><i class="fas fa-check"></i> Dedicated project manager</li>
-                        <li><i class="fas fa-check"></i> Flexible timeline</li>
-                        <li><i class="fas fa-check"></i> Scalable architecture</li>
-                        <li><i class="fas fa-check"></i> Ongoing maintenance</li>
-                        <li><i class="fas fa-check"></i> Priority support</li>
-                        <li><i class="fas fa-check"></i> Custom features</li>
-                        <li><i class="fas fa-check"></i> Extended warranty</li>
-                    </ul>
-                    <a href="#contact" class="btn btn-outline btn-large">Request Quote</a>
-                </div>
+                    <a href="#contact" class="btn btn-outline contact-plan-link" data-interest="Application and System Development" data-budget="KES 250K – 500K">Book a call</a>
+                </article>
             </div>
-            <div class="pricing-note">
-                <p><i class="fas fa-info-circle"></i> All prices are in Kenyan Shillings (KES). Pricing may vary based on specific requirements. Contact us for a detailed quote tailored to your needs.</p>
-            </div>
+            <p class="pricing-footnote">Need something outside these bands? We’ll scope a custom quote.</p>
         </div>
     </section>
 
     <!-- FAQ Section -->
     <section id="faq" class="faq">
-        <div class="container">
-            <span class="section-subtitle">FAQ</span>
-            <h2 class="section-title">Frequently Asked Questions</h2>
-            <p class="section-description" style="text-align: center; max-width: 700px; margin: 0 auto 4rem; color: var(--text-light);">Got questions? We've got answers. Here are the most common questions we receive.</p>
-            <div class="faq-container">
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>How long does it take to build a website?</h3>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Project timelines vary based on complexity. A simple website typically takes 2-4 weeks, while complex web applications can take 8-12 weeks. We'll provide a detailed timeline during our initial consultation.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>What's included in your web development service?</h3>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Our service includes: responsive design, custom development, SEO optimization, performance optimization, security implementation, content management system setup, and 30 days of post-launch support.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>Do you provide website maintenance after launch?</h3>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Yes! We offer flexible maintenance packages including regular updates, security patches, backups, performance monitoring, and technical support. We also provide 30 days of free support after launch.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>Can you work with our existing website?</h3>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Absolutely! We can redesign, rebuild, or enhance your existing website. We'll analyze your current site and provide recommendations for improvements while preserving your brand identity.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>What technologies do you use?</h3>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>We use modern, industry-standard technologies including React, Node.js, Python, PHP, WordPress, and various databases. We choose the best stack for each project based on requirements and scalability needs.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>How much does a website cost?</h3>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Pricing depends on project scope and complexity. Simple websites start from KES 50,000, while complex web applications can range from KES 120,000 to KES 500,000+. We also offer custom pricing as per client request. We provide detailed quotes after understanding your requirements.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>Do you offer hosting services?</h3>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Yes, we can set up and manage hosting for you, or we can work with your existing hosting provider. We recommend reliable hosting solutions that ensure fast performance and uptime.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <h3>What if I'm not satisfied with the result?</h3>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>We offer a 100% satisfaction guarantee. If you're not happy with the final result, we'll work with you to make it right, or provide a full refund. Your success is our priority.</p>
-                    </div>
-                </div>
+        <div class="container faq-layout">
+            <div class="faq-intro">
+                <span class="section-subtitle">FAQ</span>
+                <h2 class="section-title section-title-left">Answers before you book</h2>
+                <p class="section-intro section-intro-left">Clear answers about timelines, pricing, and how we work — so you can decide with confidence.</p>
+                <a href="#contact" class="btn btn-primary faq-cta">Let's talk →</a>
             </div>
-        </div>
-    </section>
-
-    <!-- Free Consultation CTA -->
-    <section class="consultation-cta">
-        <div class="container">
-            <div class="consultation-content">
-                <div class="consultation-text">
-                    <span class="consultation-badge">Free Consultation</span>
-                    <h2>Ready to Transform Your Digital Presence?</h2>
-                    <p>Get a free 30-minute consultation with our experts. We'll discuss your project, answer your questions, and provide a custom quote—no obligation required.</p>
-                    <div class="consultation-benefits">
-                        <div class="benefit-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span>No obligation, completely free</span>
-                        </div>
-                        <div class="benefit-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Expert advice & recommendations</span>
-                        </div>
-                        <div class="benefit-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Custom quote for your project</span>
-                        </div>
-                        <div class="benefit-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Fast response within 24 hours</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="consultation-form-wrapper">
-                    <form class="consultation-form" id="consultationForm">
-                        <h3>Schedule Your Free Consultation</h3>
-                        <div class="form-group">
-                            <input type="text" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" placeholder="Your Email" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="tel" placeholder="Phone Number" required>
-                        </div>
-                        <div class="form-group">
-                            <select required>
-                                <option value="">Project Type</option>
-                                <option value="website">Website Development</option>
-                                <option value="webapp">Web Application</option>
-                                <option value="ecommerce">E-commerce Store</option>
-                                <option value="redesign">Website Redesign</option>
-                                <option value="maintenance">Maintenance & Support</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <textarea placeholder="Tell us about your project..." rows="4" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-large">Get Free Consultation</button>
-                        <p class="form-note">We'll contact you within 24 hours to schedule your consultation.</p>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Before/After Comparison Section -->
-    <section class="before-after">
-        <div class="container">
-            <span class="section-subtitle">Transformations</span>
-            <h2 class="section-title">See the Difference We Make</h2>
-            <p class="section-description" style="text-align: center; max-width: 700px; margin: 0 auto 3rem; color: var(--text-light);">Real results from real projects. See how we transformed these businesses.</p>
-            <div class="comparison-slider">
-                <div class="comparison-item">
-                    <div class="comparison-header">
-                        <h3>VELORA Skincare Website</h3>
-                        <p>Complete redesign and e-commerce integration</p>
-                    </div>
-                    <div class="comparison-images">
-                        <div class="before-image">
-                            <div class="image-label">Before</div>
-                            <div class="image-placeholder">
-                                <i class="fas fa-image"></i>
-                                <p>Old Design</p>
-                            </div>
-                        </div>
-                        <div class="after-image">
-                            <div class="image-label success">After</div>
-                            <div class="image-placeholder">
-                                <i class="fas fa-image"></i>
-                                <p>New Design</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="comparison-stats">
-                        <div class="stat-box">
-                            <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
-                            <div class="stat-value">200%</div>
-                            <div class="stat-label">Sales Increase</div>
-                        </div>
-                        <div class="stat-box">
-                            <div class="stat-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            <div class="stat-value">3.2s</div>
-                            <div class="stat-label">Load Time</div>
-                        </div>
-                        <div class="stat-box">
-                            <div class="stat-icon"><i class="fas fa-users"></i></div>
-                            <div class="stat-value">150%</div>
-                            <div class="stat-label">Traffic Growth</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="comparison-item">
-                    <div class="comparison-header">
-                        <h3>Restaurant Ordering System</h3>
-                        <p>From manual orders to automated online system</p>
-                    </div>
-                    <div class="comparison-images">
-                        <div class="before-image">
-                            <div class="image-label">Before</div>
-                            <div class="image-placeholder">
-                                <i class="fas fa-image"></i>
-                                <p>Manual Process</p>
-                            </div>
-                        </div>
-                        <div class="after-image">
-                            <div class="image-label success">After</div>
-                            <div class="image-placeholder">
-                                <i class="fas fa-image"></i>
-                                <p>Online System</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="comparison-stats">
-                        <div class="stat-box">
-                            <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
-                            <div class="stat-value">40%</div>
-                            <div class="stat-label">Sales Increase</div>
-                        </div>
-                        <div class="stat-box">
-                            <div class="stat-icon"><i class="fas fa-clock"></i></div>
-                            <div class="stat-value">50%</div>
-                            <div class="stat-label">Time Saved</div>
-                        </div>
-                        <div class="stat-box">
-                            <div class="stat-icon"><i class="fas fa-smile"></i></div>
-                            <div class="stat-value">95%</div>
-                            <div class="stat-label">Customer Satisfaction</div>
-                        </div>
-                    </div>
-                </div>
+            <div class="faq-list" role="list">
+                <details class="faq-item" open>
+                    <summary>How long does it take to build a website?</summary>
+                    <p>Timelines depend on scope. A focused marketing site typically takes 2–4 weeks; growth sites and stores often 4–8 weeks; product / web apps can take 8–12+ weeks. You’ll get a clear timeline in the kickoff scope.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>How much does a website cost?</summary>
+                    <p>Marketing sites start from KES 50,000, growth sites / stores from KES 120,000, and product / web apps from KES 250,000. Final quotes are scoped to your requirements — need something outside these bands? We’ll provide a custom estimate.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>What’s included in a typical engagement?</summary>
+                    <p>Responsive design, custom development, foundational SEO setup, performance and security basics, CMS or admin where needed, and 30 days of post-launch support. Exact deliverables are listed in your scope.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Can you work with our existing website?</summary>
+                    <p>Yes. We can redesign, rebuild, or enhance what you already have — preserving brand equity while improving structure, speed, and conversion.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Do you provide maintenance after launch?</summary>
+                    <p>Yes. Every launch includes 30 days of support. After that we offer flexible care packages for updates, security, backups, monitoring, and ongoing iteration.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>What if I’m not satisfied with the result?</summary>
+                    <p>We work in visible loops with clear milestones so feedback lands early. If something is off, we fix it within the agreed scope — your success is the point of the engagement.</p>
+                </details>
             </div>
         </div>
     </section>
@@ -963,7 +422,7 @@
     <section class="testimonials">
         <div class="testimonials-header">
             <span class="section-subtitle">Testimonials</span>
-            <h2 class="section-title">What Our Kenyan Clients Say</h2>
+            <h2 class="section-title">What clients say</h2>
         </div>
         <div class="testimonials-scroll-wrapper">
             <!-- Row 1: Scrolls left -->
@@ -1611,43 +1070,97 @@
         </div>
     </section>
 
+    <!-- Closing CTA -->
+    <section class="closing-cta">
+        <div class="container closing-cta-inner">
+            <div>
+                <h2>Ready to build with confidence?</h2>
+                <p>Planning a new product, modernizing a platform, or tightening your growth engine — we can help you define the right system and ship it well.</p>
+            </div>
+            <a href="#contact" class="btn btn-primary btn-large">Book a call</a>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
+            <span class="section-subtitle">Contact</span>
+            <h2 class="section-title">Let's build something that converts</h2>
+            <p class="section-intro">Tell us what you need and your budget range. We'll reply within one business day with next steps.</p>
             <div class="contact-container">
                 <div class="contact-info">
-                    <h3>Let's talk about your project</h3>
-                    <p>Have a project in mind? We'd love to hear about it. Send us a message and we'll get back to you as soon as possible.</p>
+                    <h3>Prefer to talk directly?</h3>
+                    <p>Reach us by email or phone — or send the form and we'll schedule a short intro call.</p>
                     <div class="contact-details">
                         <div class="contact-item">
                             <i class="fas fa-envelope"></i>
-                            <p>info@nexoradigital.com</p>
+                            <div>
+                                <span class="contact-label">Email</span>
+                                <p><a href="mailto:info@nexoradigital.com">info@nexoradigital.com</a></p>
+                            </div>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-phone"></i>
-                            <p>+254 795091955</p>
+                            <div>
+                                <span class="contact-label">Phone</span>
+                                <p><a href="tel:+254795091955">+254 795 091 955</a></p>
+                            </div>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-map-marker-alt"></i>
-                            <p>Kenya, Nairobi</p>
+                            <div>
+                                <span class="contact-label">Location</span>
+                                <p>Nairobi, Kenya</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <form class="contact-form" action="https://formspree.io/f/mvzjyddy" method="POST">
-                    <div class="form-group">
-                        <input type="text" name="name" placeholder="Your Name" required>
+                <form class="contact-form" id="contactForm" action="https://formspree.io/f/mvzjyddy" method="POST">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contactName">Full name</label>
+                            <input type="text" id="contactName" name="name" placeholder="Jane Mwangi" required autocomplete="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="contactEmail">Email</label>
+                            <input type="email" id="contactEmail" name="email" placeholder="jane@company.com" required autocomplete="email">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contactInterest">Interested in</label>
+                            <select id="contactInterest" name="interest" required>
+                                <option value="" disabled selected>Select a focus</option>
+                                <option value="Application and System Development">Application and System Development</option>
+                                <option value="Artificial Intelligence (AI)">Artificial Intelligence (AI)</option>
+                                <option value="Search Engine Optimization (SEO)">Search Engine Optimization (SEO)</option>
+                                <option value="Digital Marketing & Brand Execution">Digital Marketing &amp; Brand Execution</option>
+                                <option value="UI/UX Design and Research">UI/UX Design and Research</option>
+                                <option value="Brand Strategy">Brand Strategy</option>
+                                <option value="Consultation">Consultation</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactBudget">Budget range</label>
+                            <select id="contactBudget" name="budget" required>
+                                <option value="" disabled selected>Select a range</option>
+                                <option value="Under KES 50K">Under KES 50K</option>
+                                <option value="KES 50K – 120K">KES 50K – 120K</option>
+                                <option value="KES 120K – 250K">KES 120K – 250K</option>
+                                <option value="KES 250K – 500K">KES 250K – 500K</option>
+                                <option value="KES 500K+">KES 500K+</option>
+                                <option value="Not sure yet">Not sure yet</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <input type="email" name="email" placeholder="Your Email" required>
+                        <label for="contactMessage">Tell us about your project</label>
+                        <textarea id="contactMessage" name="message" placeholder="Goals, timeline, and anything we should know…" rows="5" required></textarea>
                     </div>
-                    <div class="form-group">
-                        <input type="text" name="subject" placeholder="Subject">
-                    </div>
-                    <div class="form-group">
-                        <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
+                    <input type="hidden" name="subject" id="contactSubject" value="New project inquiry">
+                    <button type="submit" class="btn btn-primary btn-large">Send inquiry</button>
+                    <p class="form-note">No spam. We'll only use this to respond about your project.</p>
                 </form>
             </div>
         </div>
@@ -1660,7 +1173,7 @@
                 <div class="footer-about">
                     <div class="footer-brand">
                         <img src="images/logo.png" alt="Nexora Digital Logo" class="footer-logo">
-                        <h3>NEXORA DIGITAL</h3>
+                        <h3>Nexora Digital</h3>
                     </div>
                     <p>Creating exceptional digital experiences that drive results.</p>
                     <div class="social-links">
@@ -1698,85 +1211,47 @@
         </div>
     </footer>
 
-    <!-- Chatbot -->
-    <div class="chatbot-container" id="chatbotContainer">
+    <!-- Nexy chatbot -->
+    <div class="chatbot-container" id="chatbotContainer" data-lenis-prevent role="dialog" aria-label="Nexy chat">
         <div class="chatbot-header">
             <div class="chatbot-header-content">
-                <div class="chatbot-avatar">
-                    <i class="fas fa-robot"></i>
-                </div>
+                <div class="chatbot-avatar" aria-hidden="true">N</div>
                 <div class="chatbot-info">
-                    <h3>AI Assistant</h3>
-                    <span class="chatbot-status">Online</span>
+                    <h3>Nexy</h3>
+                    <span class="chatbot-status">Nexora Digital assistant</span>
                 </div>
             </div>
-            <button class="chatbot-close" id="chatbotClose">
+            <button class="chatbot-close" id="chatbotClose" aria-label="Close chat">
                 <i class="fas fa-times"></i>
             </button>
         </div>
-        <div class="chatbot-messages" id="chatbotMessages">
+        <div class="chatbot-messages" id="chatbotMessages" data-lenis-prevent>
             <div class="message bot-message">
-                <div class="message-avatar">
-                    <i class="fas fa-robot"></i>
-                </div>
+                <div class="message-avatar" aria-hidden="true">N</div>
                 <div class="message-content">
-                    <p>Hello! I'm your AI assistant. How can I help you today?</p>
+                    <p>Hi — I'm Nexy. Ask about services, pricing, timelines, or how we work.</p>
                 </div>
             </div>
             <div class="chatbot-faq" id="chatbotFaq">
-                <div class="faq-title">Frequently Asked Questions</div>
+                <div class="faq-title">Quick questions</div>
                 <div class="faq-buttons">
-                    <button class="faq-btn" data-question="What services do you offer?">
-                        <i class="fas fa-briefcase"></i>
-                        <span>What services do you offer?</span>
-                    </button>
-                    <button class="faq-btn" data-question="How much does a website cost?">
-                        <i class="fas fa-coins"></i>
-                        <span>How much does a website cost?</span>
-                    </button>
-                    <button class="faq-btn" data-question="How long does it take to build a website?">
-                        <i class="fas fa-clock"></i>
-                        <span>How long does it take?</span>
-                    </button>
-                    <button class="faq-btn" data-question="Do you provide website maintenance?">
-                        <i class="fas fa-tools"></i>
-                        <span>Do you provide maintenance?</span>
-                    </button>
-                    <button class="faq-btn" data-question="Can you help with SEO?">
-                        <i class="fas fa-search"></i>
-                        <span>Can you help with SEO?</span>
-                    </button>
-                    <button class="faq-btn" data-question="What technologies do you use?">
-                        <i class="fas fa-code"></i>
-                        <span>What technologies do you use?</span>
-                    </button>
-                    <button class="faq-btn" data-question="What is your development process?">
-                        <i class="fas fa-diagram-project"></i>
-                        <span>What is your process?</span>
-                    </button>
-                    <button class="faq-btn" data-question="Can you build a project similar to AksharJobs, AxarEvents, Velora or Leadora?">
-                        <i class="fas fa-layer-group"></i>
-                        <span>Can you build similar platforms?</span>
-                    </button>
-                    <button class="faq-btn" data-question="Do you offer payment plans and what are your payment terms?">
-                        <i class="fas fa-credit-card"></i>
-                        <span>Payment terms & plans?</span>
-                    </button>
-                    <button class="faq-btn" data-question="How do I contact you on WhatsApp?">
-                        <i class="fab fa-whatsapp"></i>
-                        <span>WhatsApp contact</span>
-                    </button>
+                    <button class="faq-btn" data-question="What services do you offer?">Services</button>
+                    <button class="faq-btn" data-question="How much does a website cost?">Pricing</button>
+                    <button class="faq-btn" data-question="How long does it take to build a website?">Timelines</button>
+                    <button class="faq-btn" data-question="Do you provide website maintenance?">Maintenance</button>
+                    <button class="faq-btn" data-question="Can you help with SEO?">SEO</button>
+                    <button class="faq-btn" data-question="How do I contact you on WhatsApp?">WhatsApp</button>
                 </div>
             </div>
         </div>
         <div class="chatbot-input-container">
             <div class="chatbot-input-wrapper">
-                <input type="text" id="chatbotInput" placeholder="Type your message..." autocomplete="off">
-                <button id="chatbotSend" class="chatbot-send-btn">
-                    <i class="fas fa-paper-plane"></i>
+                <input type="text" id="chatbotInput" placeholder="Message Nexy..." autocomplete="off" aria-label="Message Nexy">
+                <button id="chatbotSend" class="chatbot-send-btn" aria-label="Send message">
+                    <i class="fas fa-arrow-up"></i>
                 </button>
             </div>
-            <div class="chatbot-typing" id="chatbotTyping" style="display: none;">
+            <div class="chatbot-typing" id="chatbotTyping" style="display: none;" aria-hidden="true">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -1784,20 +1259,38 @@
         </div>
     </div>
 
-    <!-- Chatbot Toggle Button -->
-    <button class="chatbot-toggle" id="chatbotToggle">
-        <i class="fas fa-comments"></i>
-        <span class="chatbot-badge">1</span>
+    <button class="chatbot-toggle" id="chatbotToggle" aria-label="Open Nexy chat">
+        <span class="chatbot-toggle-open" aria-hidden="true">N</span>
+        <span class="chatbot-toggle-close" aria-hidden="true"><i class="fas fa-times"></i></span>
     </button>
 
     <a href="https://wa.me/254795091955" class="whatsapp-left-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <script src="js/floatingLines.js"></script>
     <script src="js/caseStudies.js"></script>
     <script src="js/script.js"></script>
     <script src="js/chatbot.js"></script>
+    <script type="module">
+        import { createDarkVeil } from './js/darkVeil.js';
+
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const mount = document.getElementById('heroDarkVeil');
+
+        if (!reduceMotion && mount) {
+            createDarkVeil(mount, {
+                hueShift: 152,
+                noiseIntensity: 0.02,
+                scanlineIntensity: 0,
+                speed: 0.3,
+                scanlineFrequency: 0,
+                warpAmount: 0.16,
+                resolutionScale: 1
+            });
+        } else if (mount) {
+            mount.classList.add('is-fallback');
+        }
+    </script>
 </body>
 </html>
 

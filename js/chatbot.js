@@ -18,7 +18,10 @@ class Chatbot {
 
     init() {
         // Toggle chatbot
-        this.toggle.addEventListener('click', () => this.openChatbot());
+        this.toggle.addEventListener('click', () => {
+            if (this.isOpen) this.closeChatbot();
+            else this.openChatbot();
+        });
         this.close.addEventListener('click', () => this.closeChatbot());
 
         // Send message on button click
@@ -42,6 +45,13 @@ class Chatbot {
             });
         });
 
+        // Keep wheel/touch scroll inside the chat (Lenis otherwise steals it)
+        if (this.messagesContainer) {
+            const stopPageScroll = (e) => e.stopPropagation();
+            this.messagesContainer.addEventListener('wheel', stopPageScroll, { passive: true });
+            this.messagesContainer.addEventListener('touchmove', stopPageScroll, { passive: true });
+        }
+
         // Close on outside click (optional)
         document.addEventListener('click', (e) => {
             if (this.isOpen && 
@@ -55,8 +65,15 @@ class Chatbot {
 
     openChatbot() {
         this.container.classList.add('active');
+        this.toggle.classList.add('is-open');
+        this.toggle.setAttribute('aria-label', 'Close Nexy chat');
         this.isOpen = true;
         this.input.focus();
+
+        // Pause page smooth-scroll so the chat panel can scroll natively
+        if (window.lenis && typeof window.lenis.stop === 'function') {
+            window.lenis.stop();
+        }
         
         // Show FAQ section if no messages have been sent yet
         if (this.conversationHistory.length === 0 && this.faqSection) {
@@ -66,7 +83,13 @@ class Chatbot {
 
     closeChatbot() {
         this.container.classList.remove('active');
+        this.toggle.classList.remove('is-open');
+        this.toggle.setAttribute('aria-label', 'Open Nexy chat');
         this.isOpen = false;
+
+        if (window.lenis && typeof window.lenis.start === 'function') {
+            window.lenis.start();
+        }
     }
 
     addMessage(content, isUser = false) {
@@ -80,9 +103,12 @@ class Chatbot {
 
         const avatar = document.createElement('div');
         avatar.className = 'message-avatar';
-        avatar.innerHTML = isUser 
-            ? '<i class="fas fa-user"></i>' 
-            : '<i class="fas fa-robot"></i>';
+        avatar.setAttribute('aria-hidden', 'true');
+        avatar.textContent = isUser ? 'You' : 'N';
+        if (isUser) {
+            avatar.style.fontSize = '0.55rem';
+            avatar.style.letterSpacing = '0';
+        }
 
         const messageContent = document.createElement('div');
         messageContent.className = 'message-content';

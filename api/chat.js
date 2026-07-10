@@ -51,7 +51,7 @@ module.exports = async (req, res) => {
     }
 
     // Build conversation context
-    let conversationContext = 'You are a helpful AI assistant for NEXORA DIGITAL, a web development agency. You help answer questions about web development, digital services, and the company. Be friendly, professional, and concise.\n\n';
+    let conversationContext = 'You are Nexy, the helpful AI assistant for NEXORA DIGITAL, a web development agency. You help answer questions about web development, digital services, and the company. Be friendly, professional, and concise. When relevant, you may introduce yourself as Nexy.\n\n';
     
     // Add conversation history if available
     if (history && Array.isArray(history) && history.length > 0) {
