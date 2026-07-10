@@ -1212,26 +1212,25 @@ nav .container {
 .testimonials-scroll {
     display: flex;
     gap: 1rem;
-    animation: scroll-testimonials-left 60s linear infinite;
+    --marquee-gap-offset: 0.5rem;
+    animation: none;
     will-change: transform;
     padding: 0;
     align-items: flex-start;
     transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
-    perspective: 1000px;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    contain: layout style;
 }
 
-.testimonials-scroll-reverse {
+.testimonials-scroll.is-ready {
+    animation: scroll-testimonials-left 60s linear infinite;
+}
+
+.testimonials-scroll-reverse.is-ready {
     animation: scroll-testimonials-right 65s linear infinite;
 }
 
-.testimonials-scroll-fast {
-    animation: scroll-testimonials-left 45s linear infinite;
-}
-
-.testimonials-scroll:hover {
+.testimonials-scroll:has(.testimonial-card:hover) {
     animation-play-state: paused;
 }
 
@@ -1247,13 +1246,13 @@ nav .container {
         transform: translate3d(0, 0, 0);
     }
     100% {
-        transform: translate3d(-50%, 0, 0);
+        transform: translate3d(calc(-50% - var(--marquee-gap-offset)), 0, 0);
     }
 }
 
 @keyframes scroll-testimonials-right {
     0% {
-        transform: translate3d(-50%, 0, 0);
+        transform: translate3d(calc(-50% - var(--marquee-gap-offset)), 0, 0);
     }
     100% {
         transform: translate3d(0, 0, 0);
@@ -1272,7 +1271,7 @@ nav .container {
     padding: 1rem 1.25rem;
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-    transition: all 0.3s ease;
+    transition: box-shadow 0.3s ease;
     border: 1px solid rgba(var(--primary-rgb), 0.1);
     position: relative;
     flex: 0 0 280px;
@@ -1311,7 +1310,6 @@ nav .container {
 }
 
 .testimonial-card:hover {
-    transform: translateY(-10px);
     box-shadow: 0 15px 40px rgba(var(--primary-rgb), 0.15);
 }
 
@@ -1438,9 +1436,13 @@ nav .container {
         width: 50px;
     }
     
-    .testimonials-scroll {
+    .testimonials-scroll.is-ready {
         animation-duration: 30s;
+    }
+
+    .testimonials-scroll {
         gap: 0.75rem;
+        --marquee-gap-offset: 0.375rem;
     }
     
     .testimonials-track {
@@ -1648,6 +1650,11 @@ nav .container {
     }
 
     .hero-grid {
+        will-change: auto;
+    }
+
+    .testimonials-scroll {
+        animation: none;
         will-change: auto;
     }
 }
